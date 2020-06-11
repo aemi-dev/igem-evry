@@ -19,11 +19,19 @@
             <h1 class="site-heading">The Rosewood Case</h1>
         </div>
         <nav class="site-navigation">
+            <button class="menu-opener no-style toggler" data-toggle-target-selector=".menu" data-toggle-class-name="open" data-toggle-event-type="click">
+                <div class="menu-opener-text">
+                    <span class="text-open">Close Menu</span>
+                    <span class="text-close">Open Menu</span>
+                </div>
+                <div class="menu-opener-icon"></div>
+            </button>
             <ul class="menu">
                 <li class="menu-item">
                     <a href="#">Overview</a>
                     <ul class="sub-menu">
                         <li class="sub-menu-item"><a href="#">Description</a></li>
+                        <li class="sub-menu-item"><a href="#">Conclusion</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
@@ -70,9 +78,10 @@
                         <img src="media/pattern-2.jpg" loading="lazy">
                     </picture>
                 </div>
+                <a class="js-compare-scroller" href="#page-content">&darr;</a>
             </div>
         </header>
-        <main class="page-content">
+        <main class="page-content" id="page-content">
             <div class="page-row">
                 <h2 class="heading-1">Team Members</h2>
                 <div class="team-members">

@@ -161,7 +161,20 @@ function attr() {
 		return element.setAttribute(attrName, value);
 	}
 	return element.getAttribute(attrName);
-}class cookies {
+}
+function data() {
+	const [element, dataset, value] = arguments;
+	if (isset(dataset)) {
+		if (is(value)) {
+			element.dataset[dataset] = value;
+			return element.dataset[dataset];
+		}
+		return element.dataset[dataset];
+	}
+	return element.dataset;
+}
+
+class cookies {
 	constructor() {
 		'use strict';
 	}
