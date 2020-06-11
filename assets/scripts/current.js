@@ -1,0 +1,5 @@
+wait.interactive(() => {
+    
+    new Compare();
+    
+});

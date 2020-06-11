@@ -5,13 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/styles/fonts.css">
+    <link rel="stylesheet" href="./assets/styles/standard.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <script src="./assets/scripts/index.js" defer></script>
+    <script src="./assets/scripts/index.js"></script>
+    <script src="./assets/scripts/compare.js"></script>
+    <script src="./assets/scripts/current.js" defer></script>
     <title>The Rosewood Case</title>
 </head>
 
-<body>
-    <h1>The Rosewood Case</h1>
+<body class="color-scheme-light">
+    <header class="site-header">
+        <div class="site-branding">
+            <h1>The Rosewood Case</h1>
+        </div>
+        <nav class="site-navigation"></nav>
+    </header>
+    <main>
+        <header class="page-header">
+            <div class="js-compare">
+                <div class="js-compare-layer js-compare-layer-1">
+                    <picture>
+                        <source srcset="media/pattern-1.webp" type="image/webp">
+                        <source srcset="media/pattern-1.jpg" type="image/jpg">
+                        <img src="media/pattern-1.jpg" loading="lazy">
+                    </picture>
+                </div>
+                <div class="js-compare-layer js-compare-layer-2">
+                    <picture>
+                        <source srcset="media/pattern-2.webp" type="image/webp">
+                        <source srcset="media/pattern-2.jpg" type="image/jpg">
+                        <img src="media/pattern-2.jpg" loading="lazy">
+                    </picture>
+                </div>
+            </div>
+        </header>
+        <main class="page-content"></main>
+        <footer class="page-footer"></footer>
+    </main>
+    <footer class="site-footer">
+        <div class="site-sponsors"></div>
+        <div class="site-colophon">&copy; 2020 &bull; iGEM Paris-Saclay</div>
+    </footer>
 </body>
 
 </html>
