@@ -30,11 +30,13 @@ class Compare {
 
     static attachEvent(element) {
         if (element instanceof HTMLElement) {
-            element.addEventListener( 'mousemove', event => {
-                requestFrame(() => {
-                    element.children[0].style.width = `${event.clientX}px`;
-                });
-            });
+            for (const type of ['mousemove', 'touchmove']) {
+                element.addEventListener( type, event => {
+                    requestFrame(() => {
+                        element.children[0].style.width = `${event.clientX}px`;
+                    });
+                });   
+            }
         }
     }
 }
