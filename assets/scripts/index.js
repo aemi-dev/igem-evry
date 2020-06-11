@@ -90,7 +90,6 @@ function id(string) {
 	'use strict';
 	return document.getElementById(string);
 }
-
 function requestFrame() {
 	'use strict';
 	const [func, ...args] = arguments;
@@ -99,7 +98,6 @@ function requestFrame() {
 	}
 	throw new Error(`${func} is not a function.`);
 }
-
 function cancelFrame(id) {
 	'use strict';
 	try {
@@ -110,7 +108,6 @@ function cancelFrame(id) {
 		return false;
 	}
 }
-
 function hasClass(element, className) {
 	'use strict';
 	if (is(element)) {
@@ -119,7 +116,6 @@ function hasClass(element, className) {
 		return catchError(`element:${element} is undefined.`);
 	}
 }
-
 function addClass(element, className, doNotRequestFrame) {
 	'use strict';
 	doNotRequestFrame = doNotRequestFrame || true;
@@ -133,7 +129,6 @@ function addClass(element, className, doNotRequestFrame) {
 	}
 	return catchError(`element:${element} or class:${classname} is undefined.`);
 }
-
 function removeClass(element, className, doNotRequestFrame) {
 	'use strict';
 	doNotRequestFrame = doNotRequestFrame || true;
@@ -166,8 +161,7 @@ function attr() {
 		return element.setAttribute(attrName, value);
 	}
 	return element.getAttribute(attrName);
-}
-class cookies {
+}class cookies {
 	constructor() {
 		'use strict';
 	}

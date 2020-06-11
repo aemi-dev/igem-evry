@@ -193,7 +193,6 @@ a:visited:hover img {
 
 img {
 	border: 0;
-	border-radius: var(--radius);
 	height: auto;
 	margin-top: 0;
 	margin-right: 0;

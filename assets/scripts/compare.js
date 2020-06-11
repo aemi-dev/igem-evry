@@ -32,10 +32,9 @@ class Compare {
         if (element instanceof HTMLElement) {
             element.addEventListener( 'mousemove', event => {
                 requestFrame(() => {
-                    console.log(event);
-                    element.children[0].style.width = event.clientX + 'px';
+                    element.children[0].style.width = `${event.clientX}px`;
                 });
-            } );   
+            });
         }
     }
 }

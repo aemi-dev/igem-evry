@@ -1,28 +1,132 @@
-.site-header {
-    display: flex;
+/**
+ *
+ * GENERAL
+ *
+ */
 
-    height: 3rem;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 10;
+.heading-1 {
+	font-size: 3rem;
+}
+
+/**
+ *
+ * SITE
+ *
+ */
+.site-header {
+    --site-header-height: 5rem;
+	background-color: transparent;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	left: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	z-index: 10;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    height: var(--site-header-height);
+    padding: 0 3rem;
+}
+
+.site-heading {
+	font-size: 1.5rem;
+	line-height: 1.25em;
+	margin: 0;
+    padding: 0;
+}
+
+.site-content {
+	background-color: var(--page-color);
 }
 
 .site-footer {
-    background-color: #833B3F;
-    display: block;
-    min-height: 400px;
-    position: relative;
+	background-color: #833b3f;
+	display: block;
+	min-height: 400px;
+	position: relative;
+}
+.site-colophon {
+	color: white;
+	display: block;
+	margin: auto;
+	position: relative;
+	text-align: center;
+	width: auto;
 }
 
-.site-colophon {
-    color: white;
-    display: block;
-    margin: auto;
-    position: relative;
-    text-align: center;
-    width: auto;
+/** MENU **/
+
+.site-navigation {
+    align-items: center;
+	display: flex;
+    font-size: 1.25rem;
+	height: var(--site-header-height);
+    padding: 0 1.5rem;
+}
+
+.site-navigation ul {
+	list-style: none;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.site-navigation a {
+	display: block;
+	line-height: 1;
+	margin: 0;
+}
+
+
+.menu {
+	display: flex;
+    height: 100%;
+}
+.menu-item {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    padding: 0 1.5rem;
+	position: relative;
+}
+.menu-item:not(:hover) .sub-menu {
+	visibility: hidden;
+}
+.sub-menu {
+    background-color: var(--page-color);
+    font-size: .9em;
+	min-width: 15ch;
+	position: absolute;
+	right: 0;
+	top: 100%;
+}
+.sub-menu-item {
+    padding: 1rem 1.5rem;
+    text-align: right;
+}
+
+/**
+ *
+ * PAGE
+ *
+ */
+
+.page-content {
+	background-color: #eed3cd80;
+	margin: 0;
+	padding: 0;
+}
+.page-row {
+	margin: 0 auto;
+	max-width: 90vw;
+	padding: 2rem 0 4rem;
+	width: 80ch;
 }
 
 /**
@@ -30,40 +134,89 @@
  * MODULES
  *
  */
+
+/** TEAM MEMBERS **/
+
+.team-members {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	grid-auto-columns: repeat(auto-fill, 200px);
+	grid-auto-rows: 200px;
+	gap: 1rem;
+	justify-content: stretch;
+	justify-items: stretch;
+	align-items: stretch;
+}
+
+.team-member {
+	background-color: #b8473d;
+	display: block;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+}
+.team-member:not(:hover) .team-member-info {
+	bottom: -25%;
+	transition: bottom ease-in-out 200ms;
+}
+.team-member-image {
+	left: 0;
+	object-fit: cover;
+	object-position: center center;
+	opacity: 0.7;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.team-member-info {
+	background-color: #00000080;
+	bottom: 0;
+	padding: 0.5rem;
+	position: absolute;
+	width: 100%;
+	transition: bottom ease-in-out 200ms;
+}
+.team-member-name,
+.team-member-name strong {
+	margin: 0;
+}
+/** JS COMPARE **/
 .js-compare {
-    display: block;
-    height: 100vh;
-    position: relative;
-    width: 100vw;
+	display: block;
+	height: 100vh;
+	position: relative;
+	width: 100vw;
 }
 .js-compare,
 .js-compare * {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
-.js-compare::after {
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+.js-compare::after,
+.js-compare-layer::after {
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 .js-compare-layer {
-    height: 100vh;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    width: 100vw;
+	height: 100vh;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100vw;
 }
 .js-compare-layer-1 {
-    width: 50%;
-    z-index: 1;
+	width: 50%;
+	z-index: 1;
 }
 .js-compare-layer img {
-    min-height: 100vw;
-    object-fit:none;
-    object-position:top left;
+	height: 100vw;
+	object-fit: cover;
+	object-position: center left;
+	width: auto;
 }
