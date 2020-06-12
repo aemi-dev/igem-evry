@@ -379,7 +379,7 @@ a.js-compare-scroller:hover {
 	align-items: center;
 	background-color: var(--text-color);
 	border-radius: 2.75rem;
-	bottom: 3rem;
+	bottom: 5rem;
 	color: var(--page-color);
 	display: flex;
 	font-size: 2rem;

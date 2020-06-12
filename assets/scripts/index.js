@@ -318,7 +318,7 @@ function smoothScrollTo(selector, duration) {
 	'use strict';
 	let target = document.querySelector(selector);
 	let targetPosition = target.getBoundingClientRect().top;
-	duration = duration || 500;
+	duration = duration || 1000;
 	let startPosition = window.pageYOffset;
 	let distance = targetPosition - startPosition;
 	let startTime = null;
@@ -327,9 +327,9 @@ function smoothScrollTo(selector, duration) {
 			startTime = currentTime;
 		}
 		let timeElapsed = currentTime - startTime;
-		let run = Easing.easeInOutQuad(timeElapsed, startPosition, distance, duration);
+		let run = Easing.easeInOutCubic(timeElapsed, startPosition, distance, duration);
 		window.scrollTo(0, run);
-		if (timeElapsed < duration) {
+		if (timeElapsed < duration ) {
 			requestFrame(animation);
 		}
 	}
