@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./assets/styles/fonts.css">
     <link rel="stylesheet" href="./assets/styles/standard.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <script src="./assets/scripts/index.min.js"></script>
+    <script src="./assets/scripts/index.js"></script>
     <script src="./assets/scripts/compare.js"></script>
     <script src="./assets/scripts/current.js" defer></script>
     <title>The Rosewood Case</title>
@@ -19,7 +19,8 @@
             <h1 class="site-heading">The Rosewood Case</h1>
         </div>
         <nav class="site-navigation">
-            <button class="menu-opener no-style toggler" data-toggle-target-selector=".menu" data-toggle-class-name="open" data-toggle-event-type="click">
+            <button class="menu-opener no-style toggler" data-toggle-target-selector=".menu"
+                data-toggle-class-name="open" data-toggle-event-type="click">
                 <div class="menu-opener-text">
                     <span class="text-open">Close Menu</span>
                     <span class="text-close">Open Menu</span>
@@ -64,19 +65,21 @@
     <main class="site-content">
         <header class="page-header">
             <div class="js-compare">
-                <div class="js-compare-layer js-compare-layer-1">
-                    <picture>
-                        <source srcset="media/pattern-1.webp" type="image/webp">
-                        <source srcset="media/pattern-1.jpg" type="image/jpg">
-                        <img src="media/pattern-1.jpg" loading="lazy">
-                    </picture>
-                </div>
-                <div class="js-compare-layer js-compare-layer-2">
-                    <picture>
-                        <source srcset="media/pattern-2.webp" type="image/webp">
-                        <source srcset="media/pattern-2.jpg" type="image/jpg">
-                        <img src="media/pattern-2.jpg" loading="lazy">
-                    </picture>
+                <div class="js-compare-layers">
+                    <div class="js-compare-layer js-compare-layer-1">
+                        <picture>
+                            <source srcset="media/pattern-1.webp" type="image/webp">
+                            <source srcset="media/pattern-1.jpg" type="image/jpg">
+                            <img src="media/pattern-1.jpg" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="js-compare-layer js-compare-layer-2">
+                        <picture>
+                            <source srcset="media/pattern-2.webp" type="image/webp">
+                            <source srcset="media/pattern-2.jpg" type="image/jpg">
+                            <img src="media/pattern-2.jpg" loading="lazy">
+                        </picture>
+                    </div>
                 </div>
                 <a class="js-compare-scroller" href="#page-content">&darr;</a>
             </div>

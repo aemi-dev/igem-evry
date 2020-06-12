@@ -3,10 +3,6 @@
  * GENERAL
  *
  */
- html {
-	 scroll-behavior: smooth;
- }
-
 .heading-1 {
 	font-size: 3rem;
 }
@@ -335,20 +331,22 @@ body.mobile .sub-menu-item::before {
 	margin: 0;
 }
 /** JS COMPARE **/
-.js-compare {
+.js-compare,
+.js-compare-layers {
 	display: block;
 	height: 100vh;
 	position: relative;
 	width: 100vw;
 }
+
 .js-compare,
-.js-compare * {
+.js-compare *,
+.js-compare-layers::after {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
 }
-.js-compare::after,
-.js-compare-layer::after {
+.js-compare-layers::after{
 	bottom: 0;
 	content: '';
 	left: 0;
@@ -356,6 +354,7 @@ body.mobile .sub-menu-item::before {
 	right: 0;
 	top: 0;
 }
+
 .js-compare-layer {
 	height: 100vh;
 	left: 0;
@@ -364,6 +363,7 @@ body.mobile .sub-menu-item::before {
 	top: 0;
 	width: 100vw;
 }
+
 .js-compare-layer-1 {
 	width: 50%;
 	z-index: 1;

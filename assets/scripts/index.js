@@ -94,7 +94,7 @@ function requestFrame() {
 	'use strict';
 	const [func, ...args] = arguments;
 	if (isFunction(func)) {
-		return window.requestAnimationFrame(() => func(...args));
+		return window.requestAnimationFrame(timestamp => func(timestamp, ...args));
 	}
 	throw new Error(`${func} is not a function.`);
 }
@@ -156,6 +156,7 @@ function toggleClass(element, className) {
 	return catchError(`${element} is undefined.`);
 }
 function attr() {
+	'use strict';
 	const [element, attrName, value] = arguments;
 	if (is(value)) {
 		return element.setAttribute(attrName, value);
@@ -163,6 +164,7 @@ function attr() {
 	return element.getAttribute(attrName);
 }
 function data() {
+	'use strict';
 	const [element, dataset, value] = arguments;
 	if (isset(dataset)) {
 		if (is(value)) {
@@ -172,6 +174,166 @@ function data() {
 		return element.dataset[dataset];
 	}
 	return element.dataset;
+}
+
+class Easing {
+	constructor() {
+		'use strict';
+	}
+	static linearTween(t, b, c, d) {
+		'use strict';
+		return (c * t) / d + b;
+	}
+	static easeInQuad(t, b, c, d) {
+		'use strict';
+		t /= d;
+		return c * t * t + b;
+	}
+	static easeOutQuad(t, b, c, d) {
+		'use strict';
+		t /= d;
+		return -c * t * (t - 2) + b;
+	}
+	static easeInOutQuad(t, b, c, d) {
+		'use strict';
+		t /= d / 2;
+		if (t < 1) {
+			return (c / 2) * t * t + b;
+		}
+		t--;
+		return (-c / 2) * (t * (t - 2) - 1) + b;
+	}
+	static easeInCubic(t, b, c, d) {
+		'use strict';
+		t /= d;
+		return c * t * t * t + b;
+	}
+	static easeOutCubic(t, b, c, d) {
+		'use strict';
+		t /= d;
+		t--;
+		return c * (t * t * t + 1) + b;
+	}
+	static easeInOutCubic(t, b, c, d) {
+		'use strict';
+		t /= d / 2;
+		if (t < 1) {
+			return (c / 2) * t * t * t + b;
+		}
+		t -= 2;
+		return (c / 2) * (t * t * t + 2) + b;
+	}
+	static easeInQuart(t, b, c, d) {
+		'use strict';
+		t /= d;
+		return c * t * t * t * t + b;
+	}
+	static easeOutQuart(t, b, c, d) {
+		'use strict';
+		t /= d;
+		t--;
+		return -c * (t * t * t * t - 1) + b;
+	}
+	static easeInOutQuart(t, b, c, d) {
+		'use strict';
+		t /= d / 2;
+		if (t < 1) {
+			return (c / 2) * t * t * t * t + b;
+		}
+		t -= 2;
+		return (-c / 2) * (t * t * t * t - 2) + b;
+	}
+	static easeInQuint(t, b, c, d) {
+		'use strict';
+		t /= d;
+		return c * t * t * t * t * t + b;
+	}
+	static easeOutQuint(t, b, c, d) {
+		'use strict';
+		t /= d;
+		t--;
+		return c * (t * t * t * t * t + 1) + b;
+	}
+	static easeInOutQuint(t, b, c, d) {
+		'use strict';
+		t /= d / 2;
+		if (t < 1) {
+			return (c / 2) * t * t * t * t * t + b;
+		}
+		t -= 2;
+		return (c / 2) * (t * t * t * t * t + 2) + b;
+	}
+	static easeInSine(t, b, c, d) {
+		'use strict';
+		return -c * Math.cos((t / d) * (Math.PI / 2)) + c + b;
+	}
+	static easeOutSine(t, b, c, d) {
+		'use strict';
+		return c * Math.sin((t / d) * (Math.PI / 2)) + b;
+	}
+	static easeInOutSine(t, b, c, d) {
+		'use strict';
+		return (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
+	}
+	static easeInExpo(t, b, c, d) {
+		'use strict';
+		return c * Math.pow(2, 10 * (t / d - 1)) + b;
+	}
+	static easeOutExpo(t, b, c, d) {
+		'use strict';
+		return c * (-Math.pow(2, (-10 * t) / d) + 1) + b;
+	}
+	static easeInOutExpo(t, b, c, d) {
+		'use strict';
+		t /= d / 2;
+		if (t < 1) {
+			return (c / 2) * Math.pow(2, 10 * (t - 1)) + b;
+		}
+		t--;
+		return (c / 2) * (-Math.pow(2, -10 * t) + 2) + b;
+	}
+	static easeInCirc(t, b, c, d) {
+		'use strict';
+		t /= d;
+		return -c * (Math.sqrt(1 - t * t) - 1) + b;
+	}
+	static easeOutCirc(t, b, c, d) {
+		'use strict';
+		t /= d;
+		t--;
+		return c * Math.sqrt(1 - t * t) + b;
+	}
+	static easeInOutCirc(t, b, c, d) {
+		'use strict';
+		t /= d / 2;
+		if (t < 1) {
+			return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
+		}
+		t -= 2;
+		return (c / 2) * (Math.sqrt(1 - t * t) + 1) + b;
+	}
+}
+
+function smoothScrollTo(selector, duration) {
+	'use strict';
+	let target = document.querySelector(selector);
+	let targetPosition = target.getBoundingClientRect().top;
+	duration = duration || 500;
+	let startPosition = window.pageYOffset;
+	let distance = targetPosition - startPosition;
+	let startTime = null;
+	function animation(currentTime) {
+		if (startTime === null) {
+			startTime = currentTime;
+		}
+		let timeElapsed = currentTime - startTime;
+		let run = Easing.easeInOutQuad(timeElapsed, startPosition, distance, duration);
+		window.scrollTo(0, run);
+		if (timeElapsed < duration) {
+			requestFrame(animation);
+		}
+	}
+	requestFrame(animation);
 }
 
 class cookies {

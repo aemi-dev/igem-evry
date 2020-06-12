@@ -22,7 +22,7 @@ class Compare {
 
     constructor() {
         'use strict';
-        this.elements = [...document.getElementsByClassName('js-compare')];
+        this.elements = [...document.getElementsByClassName('js-compare-layers')];
         for (const element of this.elements) {
             Compare.attachEvent(element);
         }
@@ -31,6 +31,7 @@ class Compare {
     static attachEvent(element) {
         if (element instanceof HTMLElement) {
             element.addEventListener('mousemove', event => {
+                inhibitEvent(event);
                 requestFrame(() => {
                     element.children[0].style.width = `${event.clientX}px`;
                 });
