@@ -385,6 +385,7 @@ body.mobile .sub-menu-item::before {
 	height: 100vh;
 	object-fit: cover;
 	object-position: center left;
+	min-width: 100vw;
 	width: auto;
 }
 a.js-compare-scroller,
