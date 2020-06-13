@@ -360,26 +360,41 @@ body.mobile .sub-menu-item::before {
 	margin: 0;
 }
 .team-member-row {
-	display: flex;
-	flex-flow: row wrap;
-	margin: 0 calc(50% - 46vw);
-	min-height: 100vh;
+	display: grid;
+	grid-auto-flow: row dense;
+	grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+	gap: 2rem;
+	justify-content: center;
+	justify-items: center;
+	margin: 0 calc(50% - 45vw);
 	padding: 4rem 0;
-	width: 92vw;
+	width: 90vw;
 }
-.team-member-row > * {
-	flex: 1 1 400px;
+body:not(.mobile) .team-member-row {
+	min-height: 80vh;
+	padding: 4rem 0;
 }
 .team-member-row picture {
 	align-items: center;
 	display: flex;
 	justify-content: center;
 }
+
+body.mobile .team-member-row picture,
+body.mobile .team-member-row img {
+	height: auto;
+	width: 100%;
+}
+
 .team-member-row .team-member-info {
+	justify-self: start;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
-	padding: 0 8vw;
+	padding: 2vw 0 4vw;
+}
+body:not(.mobile) .team-member-row .team-member-info {
+	padding: 0 8rem;
 }
 .team-member-row .team-member-name {
 	font-size: 2rem;
