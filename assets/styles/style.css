@@ -24,6 +24,18 @@
 	top: 0;
 	width: 100vw;
 	z-index: 10;
+	transition-property: background;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+	will-change: background;
+}
+
+.site-header:hover {
+	background-color: var(--page-color);
+	transition-property: background;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+	will-change: background;
 }
 
 .site-branding {
@@ -137,6 +149,7 @@ body:not(.mobile) .menu-opener {
 	transition-duration: 200ms;
 	transition-property: transform, border, width;
 	transition-timing-function: ease;
+	will-change: transform;
 }
 
 .menu-opener .menu-opener-icon::before {

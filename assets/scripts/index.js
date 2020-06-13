@@ -163,6 +163,7 @@ function attr() {
 	}
 	return element.getAttribute(attrName);
 }
+
 function data() {
 	'use strict';
 	const [element, dataset, value] = arguments;
@@ -316,6 +317,7 @@ class Easing {
 
 function smoothScrollTo(selector, duration) {
 	'use strict';
+	const easing = Easing.easeInOutCubic;
 	let target = document.querySelector(selector);
 	let targetPosition = target.getBoundingClientRect().top;
 	duration = duration || 1000;
@@ -323,11 +325,9 @@ function smoothScrollTo(selector, duration) {
 	let distance = targetPosition - startPosition;
 	let startTime = null;
 	function animation(currentTime) {
-		if (startTime === null) {
-			startTime = currentTime;
-		}
+		startTime = is(startTime) ? startTime : currentTime;
 		let timeElapsed = currentTime - startTime;
-		let run = Easing.easeInOutCubic(timeElapsed, startPosition, distance, duration);
+		let run = easing(timeElapsed, startPosition, distance, duration);
 		window.scrollTo(0, run);
 		if (timeElapsed < duration ) {
 			requestFrame(animation);
@@ -419,7 +419,7 @@ function ecs() {
 	if (e instanceof Element) {
 		return ac(ce(), e);
 	}
-	const { attr, class: c, data, events, id, ns, style, actions, _, $ } = e;
+	const { attr: a, class: c, data, events, id, ns, style, actions, _, $ } = e;
 	if (id || c || $) {
 		if (ns) {
 			e = document.createElementNS(ns, $);
@@ -435,8 +435,8 @@ function ecs() {
 	} else {
 		e = ce();
 	}
-	if (attr) {
-		entries(attr, (k, v) => {
+	if (a) {
+		entries(a, (k, v) => {
 			attr(e, k, v);
 		});
 	}
@@ -504,8 +504,8 @@ class wait {
 	}
 	static delay() {
 		'use strict';
-		const [func, ...args] = arguments;
-		return setTimeout(func, 0, ...args);
+		const [func, timeout, ...args] = arguments;
+		return setTimeout(func, timeout || 0, ...args);
 	}
 	static async async() {
 		'use strict';

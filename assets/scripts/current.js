@@ -71,9 +71,17 @@ async function addSmoothScroll() {
 	}
 	Promise.all([addSmoothScrollToLink(), addSmoothScrollToScrollers()]);
 }
-
-wait.interactive(() => {
-    new Compare();
+wait.interactive(async () => {
+	checkWebPSupport()
+		.then(result => {
+			console.info(result);
+			(new Compare());
+		})
+		.catch(result => {
+			console.warn(result);
+		});
+	console.timeEnd('webp test');
+	document.getElementsByClassName('site-navigation')[0].appendChild((new Menu(...MenuData)).html());
     Promise.all([detectMobile(), addEventToTogglers(), addSmoothScroll()]);
 	window.addEventListener('resize', detectMobile);
 });
