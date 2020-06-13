@@ -277,9 +277,10 @@ class Easing {
 function smoothScrollTo(selector, duration) {
 	const easing = Easing.easeInOutCubic;
 	let target = document.querySelector(selector);
-	let targetPosition = target.getBoundingClientRect().top;
-	duration = duration || 1000;
+	if (!(target instanceof HTMLElement)) return;
 	let startPosition = window.pageYOffset;
+	let targetPosition = startPosition + target.getBoundingClientRect().top;
+	duration = duration || 1000;
 	let distance = targetPosition - startPosition;
 	let startTime = null;
 	function animation(currentTime) {

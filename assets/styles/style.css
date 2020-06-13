@@ -166,6 +166,7 @@ body:not(.mobile) .menu-opener {
 	transition-property: transform, border, width;
 	transition-timing-function: ease;
 	width: 100%;
+	will-change: transform;
 }
 
 .menu-opener.open .menu-opener-icon::before {
@@ -191,9 +192,6 @@ body:not(.mobile) .menu-opener {
     padding: 0 1.5rem;
 	position: relative;
 }
-.menu-item:not(:hover) .sub-menu {
-	visibility: hidden;
-}
 .sub-menu {
     background-color: var(--page-color);
     font-size: .9em;
@@ -201,6 +199,10 @@ body:not(.mobile) .menu-opener {
 	position: absolute;
 	right: 0;
 	top: 100%;
+	will-change: visibility;
+}
+.menu-item:not(:hover) .sub-menu {
+	visibility: hidden;
 }
 .sub-menu-item {
     padding: 1rem 1.5rem;
@@ -288,8 +290,14 @@ body.mobile .sub-menu-item::before {
 .page-row {
 	margin: 0 auto;
 	max-width: 90vw;
+	min-height: 100vh;
 	padding: 2rem 0 4rem;
 	width: 80ch;
+}
+.page-sub-row {
+	height: auto;
+	padding: 2rem 0;
+	width: 100%;
 }
 
 /**
@@ -300,7 +308,7 @@ body.mobile .sub-menu-item::before {
 
 /** TEAM MEMBERS **/
 
-.team-members {
+.team-member-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	grid-auto-columns: repeat(auto-fill, 200px);
@@ -311,18 +319,14 @@ body.mobile .sub-menu-item::before {
 	align-items: stretch;
 }
 
-.team-member {
+.team-member-cell {
 	background-color: #b8473d;
 	display: block;
 	overflow: hidden;
 	padding: 0;
 	position: relative;
 }
-.team-member:not(:hover) .team-member-info {
-	bottom: -25%;
-	transition: bottom ease-in-out 200ms;
-}
-.team-member-image {
+.team-member-cell .team-member-image {
 	left: 0;
 	object-fit: cover;
 	object-position: center center;
@@ -331,17 +335,54 @@ body.mobile .sub-menu-item::before {
 	top: 0;
 	width: 100%;
 }
-.team-member-info {
+.team-member-cell .team-member-info {
 	background-color: #00000080;
 	bottom: 0;
 	padding: 0.5rem;
 	position: absolute;
 	width: 100%;
 	transition: bottom ease-in-out 200ms;
+	will-change: bottom;
+}
+.team-member-cell:not(:hover) .team-member-info {
+	bottom: -25%;
+	transition: bottom ease-in-out 200ms;
+}
+
+.team-member-cell .team-member-name {
+	color: white;
+}
+.team-member-cell .team-member-name:hover {
+	color: white;
 }
 .team-member-name,
 .team-member-name strong {
 	margin: 0;
+}
+.team-member-row {
+	display: flex;
+	flex-flow: row wrap;
+	margin: 0 calc(50% - 46vw);
+	min-height: 100vh;
+	padding: 4rem 0;
+	width: 92vw;
+}
+.team-member-row > * {
+	flex: 1 1 400px;
+}
+.team-member-row picture {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+.team-member-row .team-member-info {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	padding: 0 8vw;
+}
+.team-member-row .team-member-name {
+	font-size: 2rem;
 }
 /** JS COMPARE **/
 .js-compare,
@@ -379,6 +420,7 @@ body.mobile .sub-menu-item::before {
 
 .js-compare-layer-1 {
 	width: 50%;
+	will-change: width;
 	z-index: 1;
 }
 .js-compare-layer img {
