@@ -1,14 +1,5 @@
 /**
  *
- * GENERAL
- *
- */
-.heading-1 {
-	font-size: 3rem;
-}
-
-/**
- *
  * SITE
  *
  */
@@ -308,6 +299,9 @@ body.mobile .sub-menu-item::before {
 
 /** TEAM MEMBERS **/
 
+.team-members {
+}
+
 .team-member-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -359,46 +353,85 @@ body.mobile .sub-menu-item::before {
 .team-member-name strong {
 	margin: 0;
 }
+
 .team-member-row {
+	--row-height: 80vh;
+	--row-gap: 2rem;
+	align-content: center;
+	align-items: center;
 	display: grid;
-	grid-auto-flow: row dense;
-	grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
-	gap: 2rem;
+	gap: var(--row-gap);
+	grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
 	justify-content: center;
 	justify-items: center;
-	margin: 0 calc(50% - 45vw);
-	padding: 4rem 0;
-	width: 90vw;
-}
-body:not(.mobile) .team-member-row {
-	min-height: 80vh;
-	padding: 4rem 0;
-}
-.team-member-row picture {
-	align-items: center;
-	display: flex;
-	justify-content: center;
+	margin: 0;
+	min-height: 60vh;
+	max-width: 90vw;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
 }
 
-body.mobile .team-member-row picture,
-body.mobile .team-member-row img {
-	height: auto;
+.team-member-row > * {
+	display: flex;
+	height: 100%;
+	justify-content: center;
 	width: 100%;
 }
 
+.team-member-row:first-child {
+	margin-top: 4rem;
+	padding-top: 0;
+}
+
+.team-member-row:last-child {
+	margin-bottom: 4rem;
+	padding-bottom: 0;
+}
+
 .team-member-row .team-member-info {
-	justify-self: start;
-	display: flex;
+	align-items: center;
 	flex-flow: column nowrap;
-	justify-content: center;
-	padding: 2vw 0 4vw;
+	padding: 0;
 }
-body:not(.mobile) .team-member-row .team-member-info {
-	padding: 0 8rem;
+.team-member-row .team-member-info > * {
+	align-items: start;
+	width: 100%;
 }
-.team-member-row .team-member-name {
-	font-size: 2rem;
+
+
+
+@media (max-width: 900px) {
+	.team-member-row {
+		--row-gap: 1rem;
+		align-content: center;
+		grid-template-columns: unset;
+		justify-content: unset;
+		justify-items: unset;
+		min-height: unset;
+		width: unset;
+	}
+	.team-member-row > * {
+		justify-content: flex-start;
+	}
+	.team-member-row .team-member-info {
+		align-items: center;
+		flex-flow: column nowrap;
+		padding: 0;
+	}
 }
+
+@media (max-width: 720px) {
+
+	.team-member-row img {
+		height: 100%;
+		width: 100%;
+	}
+
+}
+
+
+
+
 /** JS COMPARE **/
 .js-compare,
 .js-compare-layers {

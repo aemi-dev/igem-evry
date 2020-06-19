@@ -858,6 +858,12 @@ class Menu {
 	}
 }
 
+class Team {
+	constructor() {
+		this.members = new Map();
+	}
+}
+
 class ImageLoader {
 	constructor() {
 		this.worker = new ExtendedWorker(
