@@ -786,12 +786,8 @@ class Menu {
 		}
 	}
 	load() {
-		if (this.items.length > 0) {
-			this.items = [];
-		}
-		if (this.structure.size > 0) {
-			this.structure.clear();
-		}
+		this.items = [];
+		this.structure.clear();
 		const args = [...arguments].filter(({ text, href }) => isset(text) && isset(href));
 		let index = 0;
 		for (const { text, href, target, rel, children, title } of args) {
@@ -861,6 +857,24 @@ class Menu {
 class Team {
 	constructor() {
 		this.members = new Map();
+
+	}
+	load() {
+		this.members.clear();
+	}
+	html(mode) {
+		switch (mode) {
+			case 'grid': {
+				break;
+			}
+			case 'rows': {
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+
 	}
 }
 
