@@ -1,0 +1,210 @@
+<main class="site-content" id="site-content">
+        <header class="page-header">
+            <div class="js-compare">
+                <div class="js-compare-layers">
+                    <div class="js-compare-layer js-compare-layer-1">
+                        <picture>
+                            <source srcset="assets/media/pattern-1.webp" type="image/webp">
+                            <source srcset="assets/media/pattern-1.jpg" type="image/jpg">
+                            <img src="assets/media/pattern-1.jpg" alt="Page Header Background - First Layer" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="js-compare-layer js-compare-layer-2">
+                        <picture>
+                            <source srcset="assets/media/pattern-2.webp" type="image/webp">
+                            <source srcset="assets/media/pattern-2.jpg" type="image/jpg">
+                            <img src="assets/media/pattern-2.jpg" alt="Page Header Background - Second Layer" loading="lazy">
+                        </picture>
+                    </div>
+                </div>
+                <a class="js-compare-scroller" href="#page-content">&darr;</a>
+            </div>
+        </header>
+        <main class="page-content" id="page-content">
+            <div class="page-row">
+                <h2 class="h1">Team Members</h2>
+                <div class="team-members">
+                    <div class="team-member-grid">
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-1" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-2" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-3" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-4" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-5" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-6" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-cell">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <a href="#member-7" class="team-member-name"><strong>Member</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member-rows">
+                        <div class="team-member team-member-row"  id="member-1">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #1</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-row"  id="member-2">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #2</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-row"  id="member-3">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #3</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-row"  id="member-4">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #4</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-row"  id="member-5">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #5</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-row"  id="member-6">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #6</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                        <div class="team-member team-member-row" id="member-7">
+                            <picture>
+                                <source srcset="assets/media/member-placeholder.webp" type="image/webp">
+                                <source srcset="assets/media/member-placeholder.png" type="image/png">
+                                <img class="team-member-image" src="assets/media/member-placeholder.png"
+                                    alt="Team Member Picture" loading="lazy">
+                            </picture>
+                            <div class="team-member-info">
+                                <span class="team-member-name h2">Member #7</span>
+                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
+                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
+                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="page-footer"></footer>
+    </main>

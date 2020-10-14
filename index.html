@@ -4,246 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles/concat.min.css">
-    <link rel="stylesheet" href="./assets/styles/style.css">
-    <script>console.time('Page Display');</script>
-    <script src="./assets/scripts/data.js"></script>
-    <script src="./assets/scripts/module.js"></script>
-    <script defer src="./assets/scripts/index.js"></script>
+    <!-- <link rel="stylesheet" href="./assets/styles/fonts.css">
+    <link rel="stylesheet" href="./assets/styles/standard.css">
+    <link rel="stylesheet" href="./assets/styles/style.css"> -->
+    <link rel="stylesheet" href="./dist/styles/concat.min.css">
+    <script>console.time( 'Page Display' );</script>
+    <!-- <script type="text/javascript" src="./assets/scripts/base.js"></script>
+    <script type="text/javascript" src="./assets/scripts/custom.js"></script> -->
+    <script type="text/javascript" src="./dist/scripts/concat.min.js"></script>
     <title>Rosewood</title>
 </head>
 
 <body class="color-scheme-light">
-    <header class="site-header">
-        <div class="site-branding">
-            <h1 class="site-heading">Rosewood</h1>
-        </div>
-        <nav class="site-navigation">
-            <button aria-label="Menu" class="menu-opener no-style toggler" data-toggle-target-selector=".menu"
-                data-toggle-class-name="open" data-toggle-event-type="click">
-                <div class="menu-opener-text">
-                    <span class="text-open">Close Menu</span>
-                    <span class="text-close">Open Menu</span>
-                </div>
-                <div class="menu-opener-icon"></div>
-            </button>
-        </nav>
-    </header>
-    <main class="site-content" id="site-content">
-        <header class="page-header">
-            <div class="js-compare">
-                <div class="js-compare-layers">
-                    <div class="js-compare-layer js-compare-layer-1">
-                        <picture>
-                            <source srcset="media/pattern-1.webp" type="image/webp">
-                            <source srcset="media/pattern-1.jpg" type="image/jpg">
-                            <img src="media/pattern-1.jpg" alt="Page Header Background - First Layer" loading="lazy">
-                        </picture>
-                    </div>
-                    <div class="js-compare-layer js-compare-layer-2">
-                        <picture>
-                            <source srcset="media/pattern-2.webp" type="image/webp">
-                            <source srcset="media/pattern-2.jpg" type="image/jpg">
-                            <img src="media/pattern-2.jpg" alt="Page Header Background - Second Layer" loading="lazy">
-                        </picture>
-                    </div>
-                </div>
-                <a class="js-compare-scroller" href="#page-content">&darr;</a>
-            </div>
+    <template id="header-constructor">
+        <img id="tmp-site-logo"
+            data-src="https://2020.igem.org/wiki/images/9/94/T--Evry_Paris-Saclay--Logo-iGEM-Evry-2020-squared-96.png"
+            data-alt="iGEM Evry Logo">
+        <img id="tmp-site-title"
+            data-src="https://2020.igem.org/wiki/images/b/bf/T--Evry_Paris-Saclay--Logo-Rosewood_txt_light.png"
+            data-alt="Rosewood Logo">
+        <menu>
+            <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Project" data-text="Project">
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Description" data-text="Description"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Model" data-text="Model"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Engineering" data-text="Engineering"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Proof_Of_Concept" data-text="Proof Of Concept"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Implementation" data-text="Implementation"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Sustainable" data-text="Sustainable"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Measurement" data-text="Measurement"></item>
+            </item>
+            <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Parts" data-text="Parts">
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Overview" data-text="Overview"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Basic" data-text="Basic"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Composite" data-text="Composite"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Contribution" data-text="Contribution"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Improvement" data-text="Improvement"></item>
+            </item>
+            <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Safety" data-text="Safety">
+            </item>
+            <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/People" data-text="People">
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Team" data-text="Team Members"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Inclusion" data-text="Inclusion"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Collaborations" data-text="Collaborations"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Partnership" data-text="Partnership"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Attributions" data-text="Attributions"></item>
+            </item>
+            <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Human_Practices" data-text="Human Practices">
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Human_Practices" data-text="Human Practices"></item>
+                <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Education" data-text="Education and Public Engagement"></item>
+            </item>
+        </menu>
+    </template>
+    <template id="page-constructor">
+        <header data-compare=1>
+
+# Design
+
         </header>
-        <main class="page-content" id="page-content">
-            <div class="page-row">
-                <h2 class="h1">Team Members</h2>
-                <div class="team-members">
-                    <div class="team-member-grid">
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-1" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-2" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-3" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-4" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-5" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-6" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-cell">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <a href="#member-7" class="team-member-name"><strong>Member</strong></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-member-rows">
-                        <div class="team-member team-member-row"  id="member-1">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #1</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-row"  id="member-2">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #2</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-row"  id="member-3">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #3</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-row"  id="member-4">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #4</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-row"  id="member-5">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #5</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-row"  id="member-6">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #6</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                        <div class="team-member team-member-row" id="member-7">
-                            <picture>
-                                <source srcset="media/member-placeholder.webp" type="image/webp">
-                                <source srcset="media/member-placeholder.png" type="image/png">
-                                <img class="team-member-image" src="media/member-placeholder.png"
-                                    alt="Team Member Picture" loading="lazy">
-                            </picture>
-                            <div class="team-member-info">
-                                <span class="team-member-name h2">Member #7</span>
-                                <span class="team-member-role"><b>Role</b>: Any Lab</span>
-                                <span class="team-member-studies"><b>Studies</b>: Master Bio</span>
-                                <span class="team-member-fact"><b>Fact</b>: Fun fact #1</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer class="page-footer"></footer>
-    </main>
-    <footer class="site-footer">
-        <div class="site-sponsors"></div>
-        <div class="site-colophon">&copy; 2020 &bull; iGEM Paris-Saclay • <a href="#site-content">Top</a></div>
-    </footer>
-    <script>console.timeEnd('Page Display');</script>
+        <content>
+
+Design is the first step in the design-build-test cycle in engineering and synthetic biology. Use this page to describe the process that you used in the design of your project. You should clearly explain the engineering principles used to design your project.
+
+
+## What should this page contain?
+
+
+- Explanation of the engineering principles your team used in your design
+- Discussion of the design iterations your team went through
+- Experimental plan to test your designs
+
+
+## Inspiration
+
+- [2016 MIT](http://2016.igem.org/Team:MIT/Experiments/Promoters)
+- [2016 BostonU](http://2016.igem.org/Team:BostonU/Proof)
+- [2016 NCTU Formosa](http://2016.igem.org/Team:NCTU_Formosa/Design)
+
+        </content>
+    </template>
+    <template id="footer-constructor">
+        <sponsors>
+            <sponsor>
+        </sponsors>
+        <networks>
+            <network data-title="Facebook" data-href="https://facebook.com/g.cqd"></network>
+            <network data-title="Instagram" data-href="https://instagram.com/g.cqd"></network>
+            <network data-title="Twitter" data-href="https://twitter.com/g.cqd"></network>
+            <network data-title="LinkedIn" data-href="https://linkedin.com/g.cqd"></network>
+        </networks>
+        <colophon data-text="&copy; 2020 &bull; iGEM Evry Paris-Saclay" />
+    </template>
+    <script>console.timeEnd( 'Page Display' );</script>
 </body>
 
 </html>

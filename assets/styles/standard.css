@@ -2,24 +2,32 @@
 	/*
 	 * Font Stacks
 	 */
-	--system-stack: -apple-system, BlinkMacSystemFont, Lato, Roboto, system-ui, 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;
-	--mono-system-stack: 'SFMono-Regular', 'Roboto Mono', 'Inconsolata', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Consolas', Courier, 'Courier New', monospace;
-	--mono-stack: 'JetBrains Mono', 'Fira Code', 'Hack', var(--mono-system-stack);
-	--font-stack-std: 'Inter', var(--system-stack);
-	--font-stack-hdg: 'Inter Display', 'Inter', var(--system-stack);
+	--apple-stack: -apple-system, BlinkMacSystemFont;
+	--system-stack: Lato, Roboto, system-ui, 'Helvetica Neue', HelveticaNeue,
+		Helvetica, Arial, sans-serif;
+	--mono-system-stack: 'SFMono-Regular', 'Roboto Mono', 'Inconsolata', 'Menlo',
+		'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Consolas', Courier,
+		'Courier New', monospace;
+	--mono-stack: 'JetBrains Mono', 'Fira Code', 'Hack',
+		var(--mono-system-stack);
+	--font-stack: var(--apple-stack), 'Inter', var(--system-stack);
+	--font-stack-hdg: var(--apple-stack), 'Inter Display', var(--system-stack);
+	--font-size: 16px;
 	--radius: 0.2rem;
+
 	/*
 	 * Fix some CSS font properties
 	 */
-	font-family: var(--font-stack-std);
+	font-family: var(--font-stack);
+	font-size: var(--font-size);
 	font-kerning: normal;
 	font-optical-sizing: auto;
-	font-size: 16px;
 	-webkit-font-size-adjust: 100%;
+	font-size-adjust: 100%;
 	-webkit-font-smoothing: auto;
 	-moz-osx-font-smoothing: auto;
 	font-smooth: auto;
-	font-variant-ligatures: contextual common-ligatures;
+	font-variant-ligatures: contextual common-ligatures discretionary-ligatures;
 	hyphens: auto;
 	letter-spacing: -0.011em;
 	line-height: 1.5;
@@ -27,97 +35,353 @@
 	text-rendering: optimizeLegibility;
 	vertical-align: baseline;
 	word-spacing: normal;
+
 	/*
-     *
      * Variables
-     *
      */
-	/* Light Variables */
-	--light-page-color: #ffffff;
-	--light-page-color-alpha: #ffffffd8;
-	--light-caption-background: #00000080;
-	--light-element-background: #e6e6e64d;
-	--light-element-bkg-alpha: #e6e6e64d;
-	--light-element-border: #e6e6e6b3;
-	--light-border: #e6e6e6b3;
-	--light-inline-text-border: #b4b4b44d;
-	--light-input-background: #ffffffb3;
-	--light-input-border: #0000001a;
-	--light-input-shadow: #00000020;
-	--light-decoration: #e6e6e6b3;
-	--light-text-color: #202020;
-	--light-text-important: #000000;
-	--light-text-important-hover: #00000099;
-	--light-text-optional: #b4b4b4;
-	/* Dark Variables */
-	--dark-page-color: #1b1b1b;
-	--dark-page-color-alpha: #1b1b1bd8;
-	--dark-caption-background: #ffffff80;
-	--dark-element-background: #282828;
-	--dark-element-bkg-alpha: #28282880;
-	--dark-element-border: #404040;
-	--dark-border: #646464b3;
-	--dark-inline-text-border: #b4b4b44d;
-	--dark-input-background: #181818e6;
-	--dark-input-border: #ffffff1a;
-	--dark-input-shadow: #00000020;
-	--dark-decoration: #404040;
-	--dark-text-color: #e4e4e4;
-	--dark-text-important: #ffffff;
-	--dark-text-important-hover: #ffffff99;
-	--dark-text-optional: #646464;
-	/* SVG Objects */
+	--light-page-color-alpha: rgba(255, 255, 255, 0.8);
+	--light-page-color-hover: rgba(255, 255, 255, 0.9);
+	--light-page-color: rgba(255, 255, 255, 1);
+	--light-alter-background: rgba(255, 255, 255, 1);
+	--light-caption-background-alpha: rgba(0, 0, 0, 0.4);
+	--light-caption-background: rgba(0, 0, 0, 0.5);
+	--light-caption-background-hover: rgba(0, 0, 0, 0.6);
+	--light-element-background-alpha: rgba(230, 230, 230, 0.2);
+	--light-element-background: rgba(230, 230, 230, 0.3);
+	--light-element-background-hover: rgba(230, 230, 230, 0.4);
+	--light-element-border-alpha: rgba(230, 230, 230, 0.6);
+	--light-element-border: rgba(230, 230, 230, 0.7);
+	--light-element-border-hover: rgba(230, 230, 230, 0.8);
+	--light-border-alpha: rgba(230, 230, 230, 0.6);
+	--light-border: rgba(230, 230, 230, 0.7);
+	--light-border-hover: rgba(230, 230, 230, 0.8);
+	--light-inline-text-border-alpha: rgba(180, 180, 180, 0.2);
+	--light-inline-text-border: rgba(180, 180, 180, 0.3);
+	--light-inline-text-border-hover: rgba(180, 180, 180, 0.4);
+	--light-input-background-alpha: rgba(255, 255, 255, 0.6);
+	--light-input-background: rgba(255, 255, 255, 0.7);
+	--light-input-background-hover: rgba(255, 255, 255, 0.8);
+	--light-input-border-alpha: rgba(0, 0, 0, 0.05);
+	--light-input-border: rgba(0, 0, 0, 0.1);
+	--light-input-border-hover: rgba(0, 0, 0, 0.3);
+	--light-input-shadow-alpha: rgba(0, 0, 0, 0.06125);
+	--light-input-shadow: rgba(0, 0, 0, 0.125);
+	--light-input-shadow-hover: rgba(0, 0, 0, 0.25);
+	--light-decoration-alpha: rgba(230, 230, 230, 0.6);
+	--light-decoration: rgba(230, 230, 230, 0.7);
+	--light-decoration-hover: rgba(230, 230, 230, 0.8);
+	--light-text-optional-light: rgba(200, 200, 200, 1);
+	--light-text-optional-light-hover: rgba(200, 200, 200, 0.6);
+	--light-text-optional: rgba(180, 180, 180, 1);
+	--light-text-optional-hover: rgba(180, 180, 180, 0.6);
+	--light-text-optional-dark: rgba(160, 160, 160, 1);
+	--light-text-optional-dark-hover: rgba(160, 160, 160, 0.6);
+	--light-text-color-light: rgba(48, 48, 48, 1);
+	--light-text-color-light-hover: rgba(48, 48, 48, 0.6);
+	--light-text-color: rgba(32, 32, 32, 1);
+	--light-text-color-hover: rgba(32, 32, 32, 0.6);
+	--light-text-color-dark: rgba(16, 16, 16, 1);
+	--light-text-color-dark-hover: rgba(16, 16, 16, 0.6);
+	--light-text-important-light: rgba(8, 8, 8, 1);
+	--light-text-important-light-hover: rgba(8, 8, 8, 0.6);
+	--light-text-important: rgba(0, 0, 0, 1);
+	--light-text-important-hover: rgba(0, 0, 0, 0.6);
+	--dark-page-color-alpha: rgba(27, 27, 27, 0.8);
+	--dark-page-color-hover: rgba(27, 27, 27, 0.9);
+	--dark-page-color: rgba(27, 27, 27, 1);
+	--dark-alter-background: rgba(40, 40, 40, 1);
+	--dark-caption-background-alpha: rgba(255, 255, 255, 0.4);
+	--dark-caption-background: rgba(255, 255, 255, 0.5);
+	--dark-caption-background-hover: rgba(255, 255, 255, 0.6);
+	--dark-element-background-alpha: rgba(40, 40, 40, 0.5);
+	--dark-element-background: rgba(40, 40, 40, 1);
+	--dark-element-background-hover: rgba(40, 40, 40, 0.75);
+	--dark-element-border-alpha: rgba(64, 64, 64, 0.5);
+	--dark-element-border: rgba(64, 64, 64, 1);
+	--dark-element-border-hover: rgba(64, 64, 64, 0.75);
+	--dark-border-alpha: rgba(100, 100, 100, 0.6);
+	--dark-border: rgba(100, 100, 100, 0.7);
+	--dark-border-hover: rgba(100, 100, 100, 0.8);
+	--dark-inline-text-border-alpha: rgba(180, 180, 180, 0.2);
+	--dark-inline-text-border: rgba(180, 180, 180, 0.3);
+	--dark-inline-text-border-alpha: rgba(180, 180, 180, 0.4);
+	--dark-input-background-alpha: rgba(24, 24, 24, 0.8);
+	--dark-input-background: rgba(24, 24, 24, 0.9);
+	--dark-input-background-hover: rgba(24, 24, 24, 0.7);
+	--dark-input-border-alpha: rgba(255, 255, 255, 0.05);
+	--dark-input-border: rgba(255, 255, 255, 0.1);
+	--dark-input-border-hover: rgba(255, 255, 255, 0.3);
+	--dark-input-shadow-alpha: rgba(0, 0, 0, 0.125);
+	--dark-input-shadow: rgba(0, 0, 0, 0.25);
+	--dark-input-shadow-hover: rgba(0, 0, 0, 0.4);
+	--dark-decoration-alpha: rgba(64, 64, 64, 0.5);
+	--dark-decoration: rgba(64, 64, 64, 1);
+	--dark-decoration-hover: rgba(64, 64, 64, 0.75);
+	--dark-text-optional-light: rgba(80, 80, 80, 1);
+	--dark-text-optional-light-hover: rgba(80, 80, 80, 0.6);
+	--dark-text-optional: rgba(100, 100, 100, 1);
+	--dark-text-optional-hover: rgba(100, 100, 100, 0.6);
+	--dark-text-optional-dark: rgba(120, 120, 120, 1);
+	--dark-text-optional-dark-hover: rgba(120, 120, 120, 0.6);
+	--dark-text-color-light: rgba(212, 212, 212, 1);
+	--dark-text-color-light-hover: rgba(212, 212, 212, 0.6);
+	--dark-text-color: rgba(228, 228, 228, 1);
+	--dark-text-color-hover: rgba(228, 228, 228, 0.6);
+	--dark-text-color-dark: rgba(244, 244, 244, 1);
+	--dark-text-color-dark-hover: rgba(244, 244, 244, 0.6);
+	--dark-text-important-light: rgba(243, 243, 243, 1);
+	--dark-text-important-light-hover: rgba(243, 243, 243, 0.6);
+	--dark-text-important: rgba(255, 255, 255, 1);
+	--dark-text-important-hover: rgba(255, 255, 255, 0.6);
+
+	/*
+     * SVG Objects
+     */
 	--light-select-arrows: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTE4IDExOCIgZmlsbD0iYmxhY2siIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik02My4xNDIsOTAuMjMxbC0xNi4wMTUsLTI0LjYwM2wzMi4wMjksMGwtMTYuMDE0LDI0LjYwM1oiLz48cGF0aCBkPSJNNjMuMTQyLDI3LjIzMWwxNi4wMTQsMjQuNjAzbC0zMi4wMjksMGwxNi4wMTUsLTI0LjYwM1oiLz48L3N2Zz4=);
+
 	--dark-select-arrows: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTE4IDExOCIgZmlsbD0id2hpdGUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik02My4xNDIsOTAuMjMxbC0xNi4wMTUsLTI0LjYwM2wzMi4wMjksMGwtMTYuMDE0LDI0LjYwM1oiLz48cGF0aCBkPSJNNjMuMTQyLDI3LjIzMWwxNi4wMTQsMjQuNjAzbC0zMi4wMjksMGwxNi4wMTUsLTI0LjYwM1oiLz48L3N2Zz4=);
+
+	--tr-short: 200ms;
+	--tr-mid: 300ms;
+	--tr-long: 500ms;
+	--tr-func: ease-in-out;
+}
+
+.inter {
+	--font-stack: 'Inter', var(--system-stack);
+	--font-stack-hdg: 'Inter Display', 'Inter Var', 'Inter', var(--system-stack);
+	--mono-stack: 'JetBrains Mono', 'Fira Code Var', 'Fira Code', 'Hack', var(--mono-system-stack);
+	font-family: var(--font-stack);
 }
 
 @supports (font-variation-settings: normal) {
 	:root {
-		--font-stack-std: 'Inter Var', 'Inter', var(--system-stack);
+		--font-stack: var(--apple-stack), 'Inter Var', 'Inter', var(--system-stack);
+		--font-stack-hdg: var(--apple-stack), 'Inter Display Var', 'Inter Display', 'Inter Var', 'Inter', var(--system-stack);
+		--mono-stack: 'JetBrains Mono', 'Fira Code Var', 'Fira Code', 'Hack', var(--mono-system-stack);font-family: var(--font-stack);
+	}
+	.inter {
+		--font-stack: 'Inter Var', 'Inter', var(--system-stack);
 		--font-stack-hdg: 'Inter Display Var', 'Inter Display', 'Inter Var', 'Inter', var(--system-stack);
 		--mono-stack: 'JetBrains Mono', 'Fira Code Var', 'Fira Code', 'Hack', var(--mono-system-stack);
+		font-family: var(--font-stack);
 	}
 }
 
-body.color-scheme-light {
-	--page-color: var(--light-page-color);
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--tr-short: 0ms;
+		--tr-mid: 0ms;
+		--tr-long: 0ms;
+		--tr-func: linear;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--page-color-alpha: var(--light-page-color-alpha);
+		--page-color-hover: var(--light-page-color-hover);
+		--page-color: var(--light-page-color);
+		--alter-background: var(--light-alter-background);
+		--caption-background-alpha: var(--light-caption-background-alpha);
+		--caption-background: var(--light-caption-background);
+		--caption-background-hover: var(--light-caption-background-hover);
+		--element-background-alpha: var(--light-element-background-alpha);
+		--element-background: var(--light-element-background);
+		--element-background-hover: var(--light-element-background-hover);
+		--element-border-alpha: var(--light-element-border-alpha);
+		--element-border: var(--light-element-border);
+		--element-border-hover: var(--light-element-border-hover);
+		--border-alpha: var(--light-border-alpha);
+		--border: var(--light-border);
+		--border-hover: var(--light-border-hover);
+		--inline-text-border-alpha: var(--light-inline-text-border-alpha);
+		--inline-text-border: var(--light-inline-text-border);
+		--inline-text-border-hover: var(--light-inline-text-border-hover);
+		--input-background-alpha: var(--light-input-background-alpha);
+		--input-background: var(--light-input-background);
+		--input-background-hover: var(--light-input-background-hover);
+		--input-border-alpha: var(--light-input-border-alpha);
+		--input-border: var(--light-input-border);
+		--input-border-hover: var(--light-input-border-hover);
+		--input-shadow-alpha: var(--light-input-shadow-alpha);
+		--input-shadow: var(--light-input-shadow);
+		--input-shadow-hover: var(--light-input-shadow-hover);
+		--decoration-alpha: var(--light-decoration-alpha);
+		--decoration: var(--light-decoration);
+		--decoration-hover: var(--light-decoration-hover);
+		--text-optional-light: var(--light-text-optional-light);
+		--text-optional-light-hover: var(--light-text-optional-light-hover);
+		--text-optional: var(--light-text-optional);
+		--text-optional-hover: var(--light-text-optional-hover);
+		--text-optional-dark: var(--light-text-optional-dark);
+		--text-optional-dark-hover: var(--light-text-optional-dark-hover);
+		--text-color-light: var(--light-text-color-light);
+		--text-color-light-hover: var(--light-text-color-light-hover);
+		--text-color: var(--light-text-color);
+		--text-color-hover: var(--light-text-color-hover);
+		--text-color-dark: var(--light-text-color-dark);
+		--text-color-dark-hover: var(--light-text-color-dark-hover);
+		--text-important-light: var(--light-text-important-light);
+		--text-important-light-hover: var(--light-text-important-light-hover);
+		--text-important: var(--light-text-important);
+		--text-important-hover: var(--light-text-important-hover);
+		--select-arrows: var(--light-select-arrows);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--page-color-alpha: var(--dark-page-color-alpha);
+		--page-color-hover: var(--dark-page-color-hover);
+		--page-color: var(--dark-page-color);
+		--alter-background: var(--dark-alter-background);
+		--caption-background-alpha: var(--dark-caption-background-alpha);
+		--caption-background: var(--dark-caption-background);
+		--caption-background-hover: var(--dark-caption-background-hover);
+		--element-background-alpha: var(--dark-element-background-alpha);
+		--element-background: var(--dark-element-background);
+		--element-background-hover: var(--dark-element-background-hover);
+		--element-border-alpha: var(--dark-element-border-alpha);
+		--element-border: var(--dark-element-border);
+		--element-border-hover: var(--dark-element-border-hover);
+		--border-alpha: var(--dark-border-alpha);
+		--border: var(--dark-border);
+		--border-hover: var(--dark-border-hover);
+		--inline-text-border-alpha: var(--dark-inline-text-border-alpha);
+		--inline-text-border: var(--dark-inline-text-border);
+		--inline-text-border-hover: var(--dark-inline-text-border-hover);
+		--input-background-alpha: var(--dark-input-background-alpha);
+		--input-background: var(--dark-input-background);
+		--input-background-hover: var(--dark-input-background-hover);
+		--input-border-alpha: var(--dark-input-border-alpha);
+		--input-border: var(--dark-input-border);
+		--input-border-hover: var(--dark-input-border-hover);
+		--input-shadow-alpha: var(--dark-input-shadow-alpha);
+		--input-shadow: var(--dark-input-shadow);
+		--input-shadow-hover: var(--dark-input-shadow-hover);
+		--decoration-alpha: var(--dark-decoration-alpha);
+		--decoration: var(--dark-decoration);
+		--decoration-hover: var(--dark-decoration-hover);
+		--text-optional-light: var(--dark-text-optional-light);
+		--text-optional-light-hover: var(--dark-text-optional-light-hover);
+		--text-optional: var(--dark-text-optional);
+		--text-optional-hover: var(--dark-text-optional-hover);
+		--text-optional-dark: var(--dark-text-optional-dark);
+		--text-optional-dark-hover: var(--dark-text-optional-dark-hover);
+		--text-color-light: var(--dark-text-color-light);
+		--text-color-light-hover: var(--dark-text-color-light-hover);
+		--text-color: var(--dark-text-color);
+		--text-color-hover: var(--dark-text-color-hover);
+		--text-color-dark: var(--dark-text-color-dark);
+		--text-color-dark-hover: var(--dark-text-color-dark-hover);
+		--text-important-light: var(--dark-text-important-light);
+		--text-important-light-hover: var(--dark-text-important-light-hover);
+		--text-important: var(--dark-text-important);
+		--text-important-hover: var(--dark-text-important-hover);
+		--select-arrows: var(--dark-select-arrows);
+	}
+}
+
+.color-scheme-light {
 	--page-color-alpha: var(--light-page-color-alpha);
+	--page-color-hover: var(--light-page-color-hover);
+	--page-color: var(--light-page-color);
+	--alter-background: var(--light-alter-background);
+	--caption-background-alpha: var(--light-caption-background-alpha);
 	--caption-background: var(--light-caption-background);
+	--caption-background-hover: var(--light-caption-background-hover);
+	--element-background-alpha: var(--light-element-background-alpha);
 	--element-background: var(--light-element-background);
-	--element-background-alpha: var(--light-element-bkg-alpha);
-	--shaded-element-background: var(--page-color);
+	--element-background-hover: var(--light-element-background-hover);
+	--element-border-alpha: var(--light-element-border-alpha);
 	--element-border: var(--light-element-border);
+	--element-border-hover: var(--light-element-border-hover);
+	--border-alpha: var(--light-border-alpha);
 	--border: var(--light-border);
+	--border-hover: var(--light-border-hover);
+	--inline-text-border-alpha: var(--light-inline-text-border-alpha);
+	--inline-text-border: var(--light-inline-text-border);
+	--inline-text-border-hover: var(--light-inline-text-border-hover);
+	--input-background-alpha: var(--light-input-background-alpha);
 	--input-background: var(--light-input-background);
+	--input-background-hover: var(--light-input-background-hover);
+	--input-border-alpha: var(--light-input-border-alpha);
 	--input-border: var(--light-input-border);
-	--text-color: var(--light-text-color);
+	--input-border-hover: var(--light-input-border-hover);
+	--input-shadow-alpha: var(--light-input-shadow-alpha);
+	--input-shadow: var(--light-input-shadow);
+	--input-shadow-hover: var(--light-input-shadow-hover);
+	--decoration-alpha: var(--light-decoration-alpha);
 	--decoration: var(--light-decoration);
+	--decoration-hover: var(--light-decoration-hover);
+	--text-optional-light: var(--light-text-optional-light);
+	--text-optional-light-hover: var(--light-text-optional-light-hover);
+	--text-optional: var(--light-text-optional);
+	--text-optional-hover: var(--light-text-optional-hover);
+	--text-optional-dark: var(--light-text-optional-dark);
+	--text-optional-dark-hover: var(--light-text-optional-dark-hover);
+	--text-color-light: var(--light-text-color-light);
+	--text-color-light-hover: var(--light-text-color-light-hover);
+	--text-color: var(--light-text-color);
+	--text-color-hover: var(--light-text-color-hover);
+	--text-color-dark: var(--light-text-color-dark);
+	--text-color-dark-hover: var(--light-text-color-dark-hover);
+	--text-important-light: var(--light-text-important-light);
+	--text-important-light-hover: var(--light-text-important-light-hover);
 	--text-important: var(--light-text-important);
 	--text-important-hover: var(--light-text-important-hover);
-	--text-optional: var(--light-text-optional);
-	--inherit-box-shadow: var(--light-input-shadow);
-	--inline-text-border: var(--light-inline-text-border);
 	--select-arrows: var(--light-select-arrows);
 }
 
-body.color-scheme-dark {
-	--page-color: var(--dark-page-color);
+.color-scheme-dark {
 	--page-color-alpha: var(--dark-page-color-alpha);
+	--page-color-hover: var(--dark-page-color-hover);
+	--page-color: var(--dark-page-color);
+	--alter-background: var(--dark-alter-background);
+	--caption-background-alpha: var(--dark-caption-background-alpha);
 	--caption-background: var(--dark-caption-background);
+	--caption-background-hover: var(--dark-caption-background-hover);
+	--element-background-alpha: var(--dark-element-background-alpha);
 	--element-background: var(--dark-element-background);
-	--element-background-alpha: var(--dark-element-bkg-alpha);
-	--shaded-element-background: var(--element-background);
+	--element-background-hover: var(--dark-element-background-hover);
+	--element-border-alpha: var(--dark-element-border-alpha);
 	--element-border: var(--dark-element-border);
+	--element-border-hover: var(--dark-element-border-hover);
+	--border-alpha: var(--dark-border-alpha);
 	--border: var(--dark-border);
+	--border-hover: var(--dark-border-hover);
+	--inline-text-border-alpha: var(--dark-inline-text-border-alpha);
+	--inline-text-border: var(--dark-inline-text-border);
+	--inline-text-border-hover: var(--dark-inline-text-border-hover);
+	--input-background-alpha: var(--dark-input-background-alpha);
 	--input-background: var(--dark-input-background);
+	--input-background-hover: var(--dark-input-background-hover);
+	--input-border-alpha: var(--dark-input-border-alpha);
 	--input-border: var(--dark-input-border);
-	--text-color: var(--dark-text-color);
+	--input-border-hover: var(--dark-input-border-hover);
+	--input-shadow-alpha: var(--dark-input-shadow-alpha);
+	--input-shadow: var(--dark-input-shadow);
+	--input-shadow-hover: var(--dark-input-shadow-hover);
+	--decoration-alpha: var(--dark-decoration-alpha);
 	--decoration: var(--dark-decoration);
+	--decoration-hover: var(--dark-decoration-hover);
+	--text-optional-light: var(--dark-text-optional-light);
+	--text-optional-light-hover: var(--dark-text-optional-light-hover);
+	--text-optional: var(--dark-text-optional);
+	--text-optional-hover: var(--dark-text-optional-hover);
+	--text-optional-dark: var(--dark-text-optional-dark);
+	--text-optional-dark-hover: var(--dark-text-optional-dark-hover);
+	--text-color-light: var(--dark-text-color-light);
+	--text-color-light-hover: var(--dark-text-color-light-hover);
+	--text-color: var(--dark-text-color);
+	--text-color-hover: var(--dark-text-color-hover);
+	--text-color-dark: var(--dark-text-color-dark);
+	--text-color-dark-hover: var(--dark-text-color-dark-hover);
+	--text-important-light: var(--dark-text-important-light);
+	--text-important-light-hover: var(--dark-text-important-light-hover);
 	--text-important: var(--dark-text-important);
 	--text-important-hover: var(--dark-text-important-hover);
-	--text-optional: var(--dark-text-optional);
-	--inherit-box-shadow: var(--dark-input-shadow);
-	--inline-text-border: var(--dark-inline-text-border);
 	--select-arrows: var(--dark-select-arrows);
 }
 
@@ -132,12 +396,7 @@ body.color-scheme-dark {
 	letter-spacing: inherit;
 	line-height: inherit;
 	text-rendering: inherit;
-	vertical-align: inherit;
-}
-
-::placeholder {
-	color: var(--text-optional);
-	transition: color 200ms ease;
+	/* vertical-align: inherit; */
 }
 
 html,
@@ -155,13 +414,26 @@ html {
 body {
 	background-color: var(--page-color);
 	color: var(--text-color);
+	font: var(--font-size) / var(--font-stack);
+}
+
+::placeholder {
+	color: var(--text-optional);
+	transition: color var(--tr-short) var(--tr-func);
+}
+
+::-moz-placeholder {
+	color: var(--text-optional);
+	transition: color var(--tr-short) var(--tr-func);
 }
 
 [hidden] {
 	display: none !important;
 }
 
-[disabled] {
+[disabled],
+[disabled]:hover,
+[disabled]:focus {
 	cursor: not-allowed;
 	opacity: 0.7 !important;
 }
@@ -176,19 +448,25 @@ a:visited {
 	text-decoration: none;
 	opacity: 1;
 	outline: none;
-	transition: color 200ms ease;
+	transition: color var(--tr-short) var(--tr-func);
 }
 
 a:hover,
+.\:hover a,
+a.\:hover,
 a:visited:hover {
 	color: var(--text-important-hover);
-	transition: color 200ms ease;
+	transition: color var(--tr-short) var(--tr-func);
 }
 
+a img {
+	opacity: 1;
+	transition: opacity var(--tr-short) var(--tr-func);
+}
 a:hover img,
 a:visited:hover img {
 	opacity: 0.7;
-	transition: opacity 200ms ease;
+	transition: opacity var(--tr-short) var(--tr-func);
 }
 
 img {
@@ -200,18 +478,8 @@ img {
 	margin-bottom: 0;
 	max-width: 100%;
 	opacity: 1;
-	transition: opacity 200ms ease;
+	transition: opacity var(--tr-short) var(--tr-func);
 }
-
-/* a img {
-    transform: scale(1);
-    transition: .2s ease transform;
-}
-
-a img:active {
-    transform: scale(.7);
-    transition: .2s ease transform;
-} */
 
 abbr,
 abbr[title],
@@ -237,49 +505,49 @@ h6,
 
 h1,
 .h1 {
-	font-family: var(--font-stack-hdg);
 	font-size: 2em;
-	/* letter-spacing: -0.022em; */
+	letter-spacing: -0.022em;
+	line-height: 1.1;
 	margin: 0.67em 0 0.67em;
 }
 
 h2,
 .h2 {
-	font-family: var(--font-stack-hdg);
 	font-size: 1.5em;
-	/* letter-spacing: -0.019em; */
+	letter-spacing: -0.019em;
+	line-height: 1.15;
 	margin: 0.75em 0 0.75em;
 }
 
 h3,
 .h3 {
-	font-family: var(--font-stack-hdg);
 	font-size: 1.17em;
-	/* letter-spacing: -0.015em; */
+	letter-spacing: -0.015em;
+	line-height: 1.2;
 	margin: 0.83em 0 0.83em;
 }
 
 h4,
 .h4 {
-	font-family: var(--font-stack-hdg);
 	font-size: 1em;
-	/* letter-spacing: -0.011em; */
+	letter-spacing: -0.011em;
+	line-height: 1.4;
 	margin: 1.12em 0 1.12em;
 }
 
 h5,
 .h5 {
-	font-family: var(--font-stack-hdg);
 	font-size: 0.83em;
-	/* letter-spacing: -0.004em; */
+	letter-spacing: -0.004em;
+	line-height: 1.45;
 	margin: 1.5em 0 1.5em;
 }
 
 h6,
 .h6 {
-	font-family: var(--font-stack-hdg);
 	font-size: 0.75rem;
-	/* letter-spacing: 0; */
+	letter-spacing: 0;
+	line-height: 1.5;
 	margin: 1.67em 0 1.67em;
 }
 
@@ -298,36 +566,9 @@ blockquote {
 	font-size: 1.1em;
 	font-weight: normal;
 	hyphens: none;
-	padding-top: 1.5rem;
-	padding-right: 2rem;
-	padding-bottom: 1.5rem;
-	padding-left: calc(2rem + 3px);
-	text-align: left;
+	padding: 2rem;
 	position: relative;
-}
-
-blockquote::before,
-blockquote::after {
-	background-color: var(--border);
-	content: '';
-	display: block;
-	height: 100%;
-	position: absolute;
-	width: 3px;
-	top: 0;
-}
-blockquote::before {
-	left: 0;
-}
-blockquote::after {
-	right: 0;
-}
-blockquote::after {
-	display: none;
-}
-
-blockquote::after {
-	display: none;
+	text-align: left;
 }
 
 blockquote:not([class*='align']) {
@@ -386,11 +627,13 @@ details {
 	border-radius: var(--radius);
 	margin-bottom: 1em;
 	margin-top: 1em;
-	padding: 0 0.8em;
+	padding: 0 1rem;
 }
 
 details:not(:first-child) {
 	margin-top: 2em;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 details[open] {
@@ -420,7 +663,7 @@ summary {
 }
 
 summary:hover {
-	background-color: var(--element-hover);
+	background-color: var(--element-background-hover);
 }
 
 summary::-webkit-details-marker {
@@ -445,9 +688,7 @@ summary::before {
 }
 
 summary + * {
-	border: 0 !important;
-	margin-top: 0.5rem !important;
-	padding: 0.5rem !important;
+	margin-top: 0.5rem;
 }
 
 dfn {
@@ -578,7 +819,7 @@ table:not(:first-child) {
 
 caption {
 	border: none;
-	color: var(--text);
+	color: var(--text-optional-dark);
 	padding: 0.4em 0.2em;
 }
 
@@ -618,7 +859,7 @@ select {
 	border-style: solid;
 	border-width: 2px;
 	color: initial;
-	font-family: var(--font-stack-std);
+	font-family: var(--font-stack);
 	font-size: 1rem;
 	letter-spacing: -0.011em;
 	line-height: 1.5;
@@ -627,7 +868,6 @@ select {
 	max-width: unset;
 	min-height: 0;
 	min-width: 0;
-	outline: 0;
 	position: relative;
 	vertical-align: baseline;
 	z-index: 0;
@@ -693,48 +933,52 @@ textarea {
 }
 
 button:not(.no-style),
-.button > a,
-a.button,
-input[type='button'],
-input[type='submit'],
-input[type='reset'] {
+.button > a:not(.no-style),
+a.button:not(.no-style),
+input[type='button']:not(.no-style),
+input[type='submit']:not(.no-style),
+input[type='reset']:not(.no-style) {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
 	background-color: var(--text-color);
-	border-color: var(--text-color);
+	border: 2px solid var(--text-color);
 	border-radius: var(--radius);
 	color: var(--page-color);
 	cursor: pointer;
-	font-weight: bolder;
+	font-weight: 700;
 	margin: 0;
 	padding: 0.75ex 1.25ch;
-	box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.1);
-	transition-property: background-color, border-color, color, box-shadow, transform;
-	transition-duration: 150ms;
-	transition-timing-function: ease;
+	box-shadow: 0 2px 10px 2px var(--input-shadow-alpha);
+	transition-property: background-color, border-color, color, box-shadow,
+		transform;
+	transition-duration: var(--tr-short);
+	transition-timing-function: var(--tr-func);
 	vertical-align: baseline;
 }
 
 button:not(:disabled):not(.no-style):hover,
-.button > a:not(:disabled):not(.no-style):hover,
-a.button:not(:disabled):not(.no-style):hover,
-input[type='button']:not(:disabled):hover,
-input[type='submit']:not(:disabled):hover,
-input[type='reset']:not(:disabled):hover {
+.button > a:not(.no-style):hover,
+.button > a:not(.no-style):visited:hover,
+a.button:not(.no-style):hover,
+a.button:not(.no-style):visited:hover,
+input[type='button']:not(:disabled):not(.no-style):hover,
+input[type='submit']:not(:disabled):not(.no-style):hover,
+input[type='reset']:not(:disabled):not(.no-style):hover {
 	background-color: var(--text-important);
 	border-color: var(--text-important);
-	box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 5px 0 var(--input-shadow-alpha);
 	transform: scale(1);
-	transition-property: background-color, border-color, color, box-shadow, transform;
-	transition-duration: 150ms;
-	transition-timing-function: ease;
+	transition-property: background-color, border-color, color, box-shadow,
+		transform;
+	transition-duration: var(--tr-short);
+	transition-timing-function: var(--tr-func);
 }
 
 button:not(:disabled):not(.no-style):active,
 button:not(:disabled):not(.no-style):hover:active,
-.button > a:not(:disabled):active,
-.button > a:not(:disabled):hover:active,
+.button > a:not(.no-style):active,
+.button > a:not(.no-style):hover:active,
 a.button:not(:disabled):active,
 a.button:not(:disabled):hover:active,
 input[type='button']:not(:disabled):active,
@@ -745,11 +989,12 @@ input[type='reset']:not(:disabled):active,
 input[type='reset']:not(:disabled):hover:active {
 	background-color: var(--text-important-hover);
 	border-color: var(--input-border);
-	box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 5px 0 var(--input-shadow-alpha);
 	transform: scale(0.975);
-	transition-property: background-color, border-color, color, box-shadow, transform;
-	transition-duration: 150ms;
-	transition-timing-function: ease;
+	transition-property: background-color, border-color, color, box-shadow,
+		transform;
+	transition-duration: var(--tr-short);
+	transition-timing-function: var(--tr-func);
 }
 
 ::-webkit-input-placeholder {
@@ -836,7 +1081,7 @@ input[type='radio']::before {
 
 input[type='checkbox']::before {
 	color: var(--page-color);
-    content: '\2713';
+	content: '\2713';
 	font-size: 0.8rem;
 	font-weight: 900;
 	letter-spacing: 0rem;
@@ -859,8 +1104,6 @@ input[type='checkbox']:checked::before,
 input[type='radio']:checked::before {
 	visibility: visible;
 }
-
-
 
 /* Range */
 
@@ -902,11 +1145,11 @@ input[type='range']::-moz-range-track {
 	height: 5px;
 	border: 0;
 	border-radius: 1em;
-	background-color: var(--a-095);
+	background-color: var(--inline-text-border);
 }
 
 input[type='range']:focus::-moz-range-track {
-	background-color: var(--a-095);
+	background-color: var(--inline-text-border);
 }
 
 input[type='range']::-moz-range-thumb {
@@ -977,7 +1220,7 @@ input[type='search']::-webkit-search-decoration {
 
 ::-webkit-file-upload-button {
 	-webkit-appearance: button;
-	font-family: var(--font-stack-std);
+	font-family: var(--font-stack);
 }
 
 fieldset {
