@@ -651,6 +651,38 @@ p:last-child {
 	transition: fill 200ms var(--transition-function);
 }
 
+.site-sponsors {
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	gap: 2rem;
+	align-items: center;
+	justify-content: center;
+	margin-top: var(--margin);
+	margin-bottom: var(--margin);
+}
+
+.site-sponsor img:not(:hover) {
+	opacity: 1;
+	filter: saturate(0);
+	transition-property: filter;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+}
+
+.site-sponsor img:hover {
+	opacity: 1;
+	transition-property: filter;
+	transition-duration: 200ms;
+	transition-timing-function: ease;
+}
+
+
+@media (max-width: 900px) {
+	.site-sponsors {
+		grid-template-columns: repeat(auto-fill,minmax(80px,1fr));
+	}
+}
+
 .site-colophon {
 	color: var(--text-optional);
 	display: block;

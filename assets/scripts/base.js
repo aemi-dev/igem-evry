@@ -1450,8 +1450,6 @@ class Team {
 		const target = data( template, 'target' );
 		const fragment = template.content;
 
-		console.log( target );
-
 		const members = [...fragment.querySelectorAll( 'member' )].map( ( member, index ) => Team.processMember( member, index + 1 ) );
 
 		const advisors = [...fragment.querySelectorAll( 'advisor' )].map( ( advisor, index ) => Team.processAdvisor( advisor, index + 1 ) );
@@ -1926,27 +1924,30 @@ class Footer {
 		return await SocialIcon.getLink( url );
 	}
 
-	static async sponsors( sponsors ) {
-		return [...sponsors].map( sponsor => ( {
-			class: 'site-sponsor',
-			_: {
-				t: 'a',
-				attr: { href: data( sponsor, 'href' ) },
+	static async sponsors(sponsors) {
+		return {
+			class: 'site-sponsors',
+			_: [...sponsors].map(sponsor => ({
+				class: 'site-sponsor',
 				_: {
-					t: 'img',
-					attr: {
-						src: Footer.load( {
-							url: data( sponsor, 'src' ),
-							webp: data( sponsor, 'webp' )
-						} ),
-						alt: data( sponsor, 'title' )
+					t: 'a',
+					attr: { href: data(sponsor, 'href'), target: '_blank', rel:'nofollow noreferer noopener' },
+					_: {
+						t: 'img',
+						attr: {
+							src: Footer.load({
+								url: data(sponsor, 'src'),
+								webp: data(sponsor, 'webp')
+							}),
+							alt: data(sponsor, 'title')
+						}
 					}
 				}
-			}
-		} ) );
+			}))
+		};
 	}
 
-	static networks( networks ) {
+	static async networks( networks ) {
 		return {
 			class: 'site-social-networks',
 			_: [...networks].map( network => Footer.svg( data( network, 'href' ) ) )
@@ -1967,7 +1968,7 @@ class Footer {
 
 		const networks = fragment.querySelector( 'networks' );
 		const sponsors = fragment.querySelector( 'sponsors' );
-		const colophon = fragment.querySelector( 'colophon' );
+		const colophon = fragment.querySelector('colophon');
 
 		const childPromises = [];
 
