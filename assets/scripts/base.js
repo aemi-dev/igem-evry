@@ -5,6 +5,7 @@ function getGlobal() {
 	}
 	throw new Error( 'Unable to get global object.' );
 }
+
 function entries( object, func ) {
 	for ( let key in object ) {
 		if ( Object.prototype.hasOwnProperty.call( object, key ) ) {
@@ -12,6 +13,7 @@ function entries( object, func ) {
 		}
 	}
 }
+
 class Chars {
 	constructor () {
 		this.values = Object.create( null );
@@ -1261,6 +1263,244 @@ class SocialIcon {
 		} );
 	}
 }
+class Team {
+	constructor () { }
+
+	/** @returns {ImageLoader} */
+	static get loader() {
+		const gl = getGlobal();
+		if ( !( 'ImageLoader' in gl ) ) {
+			gl.ImageLoader = new ImageLoader();
+		}
+		return gl.ImageLoader;
+	}
+
+	/** @returns {HTMLTemplateElement} */
+	static getTemplate() {
+		return document.getElementById( 'team-constructor' );
+	}
+
+	static processMember( element, id ) {
+		const { name, role, img } = data( element );
+
+		const load = Team.loader.load( { url: img } );
+
+		const studiesTag = element.querySelector( 'studies' );
+		const factTag = element.querySelector( 'fact' );
+		
+		const childs = [];
+
+		if ( studiesTag ) {
+			childs.push( {
+				t: 'span',
+				class: 'team-advisor-studies',
+				_: `<b>Studies</b> : ${studiesTag.innerHTML}`
+			} );
+		}
+		
+		if ( factTag ) {
+			childs.push( {
+				t: 'span',
+				class: 'team-advisor-fact',
+				_: `<b>Fact</b> : ${factTag.innerHTML}`
+			} );
+		}
+		return {
+			cell: {
+				class: ['team-member', 'team-member-cell'],
+				_: [
+					{
+						t: 'picture',
+						_: {
+							t: 'img',
+							class: 'team-member-image',
+							attr: {
+								src: load,
+								alt: `Team Member Picture - ${name}`
+							}
+						}
+					},
+					{
+						class: 'team-member-info', _: [
+							{
+								t: 'a',
+								class: 'team-member-name',
+								attr: { href: `#member-${id}` },
+								_: `<strong>${name}</strong>`
+							},
+					]}
+				]
+			},
+			row: {
+				class: ['team-member', 'team-member-row'],
+				id: `member-${id}`,
+				_: [
+					{
+						t: 'picture',
+						_: {
+							t: 'img', class: 'team-member-image',
+							attr: {
+								src: load,
+								alt: `Team Member Picture - ${name}`
+							}
+						}
+					},
+				{
+					class: 'team-member-info',
+					_: [
+						{ t: 'span', class: ['team-member-name', 'h2'], _: name },
+						{ t: 'span', class: 'team-member-role', _: `<b>Role</b> : ${role}` },
+						...childs
+				]}
+			]
+		}};
+	}
+	static processAdvisor( element, id ) {
+		const { name, role, img } = data( element );
+		const studiesTag = element.querySelector( 'studies' );
+		const factTag = element.querySelector( 'fact' );
+
+		const load = Team.loader.load( { url: img } );
+		
+		const childs = [];
+
+		if ( studiesTag ) {
+			childs.push( {
+				t: 'span',
+				class: 'team-advisor-studies',
+				_: `<b>Studies</b> : ${studiesTag.innerHTML}`
+			} );
+		}
+		
+		if ( factTag ) {
+			childs.push( {
+				t: 'span',
+				class: 'team-advisor-fact',
+				_: `<b>Fact</b> : ${factTag.innerHTML}`
+			} );
+		}
+
+		return {
+			cell: {
+				class: ['team-advisor', 'team-advisor-cell'],
+				_: [
+					{
+						t: 'picture',
+						_: {
+							t: 'img',
+							class: ['team-advisor-image'],
+							attr: {
+								src: load,
+								alt: `Team advisor Picture - ${name}`
+							}
+						}
+					},
+					{
+						class: ['team-advisor-info'],
+						_: [
+							{
+								t: 'a',
+								class: ['team-advisor-name'],
+								attr: { href: `#advisor-${id}` },
+								_: `<strong>${name}</strong>`
+							},
+					]}
+				]
+			},
+			row: {
+				class: ['team-advisor', 'team-advisor-row'],
+				id: `advisor-${id}`, _: [
+					{
+						t: 'picture', _: {
+							t: 'img',
+							class: 'team-advisor-image',
+							attr: {
+								src: load,
+								alt: `Team advisor Picture - ${name}`
+							}
+						}
+					},
+				{
+					class: 'team-advisor-info',
+					_: [
+						{
+							t: 'span',
+							class: ['team-advisor-name', 'h2'],
+							_: name
+						},
+						{
+							t: 'span',
+							class: 'team-advisor-role',
+							_: `<b>Role</b> : ${role}`
+						},
+						...childs
+					]
+				}
+			]
+		}};
+	}
+
+	static render() {
+		const template = Team.getTemplate();
+
+		if ( !template ) {
+			return { element: null, target: null };
+		}
+
+		const target = data( template, 'target' );
+		const fragment = template.content;
+
+		console.log( target );
+
+		const members = [...fragment.querySelectorAll( 'member' )].map( ( member, index ) => Team.processMember( member, index + 1 ) );
+
+		const advisors = [...fragment.querySelectorAll( 'advisor' )].map( ( advisor, index ) => Team.processAdvisor( advisor, index + 1 ) );
+		
+		const memberGrid = [];
+		const memberRows = [];
+		const advisorGrid = [];
+		const advisorRows = [];
+
+		for ( const member of members ) {
+			memberGrid.push( member.cell );
+			memberRows.push( member.row );
+		}
+
+		for ( const advisor of advisors ) {
+			advisorGrid.push( advisor.cell );
+			advisorRows.push( advisor.row );
+		}
+
+		const element = ecs( {
+			id: 'team',
+			class: 'team-global',
+			_: [
+				{
+					class: 'team-grid', _: [
+						{ t: 'span', class:['h2','team-type'], _: 'Team Members' },
+						{ class: 'team-member-grid', _: memberGrid },
+						{ t: 'span', class:['h2','team-type'], _: 'Team Advisors' },
+						{ class: 'team-advisors-grid', _: advisorGrid },
+					]
+				},
+				{
+					class: 'team-rows', _: [
+						{ t: 'span', class: ['h2', 'team-type'], _: 'Team Members' },
+						{ class: 'team-member-rows', _: memberRows },
+						{ t: 'span', class: ['h2', 'team-type'], _: 'Team Advisors' },
+						{ class: 'team-advisors-rows', _: advisorRows },
+					]
+				}
+			]
+		} );
+
+		const targetElement = document.getElementById( target );
+		targetElement.insertAdjacentElement( 'afterend', element );
+		targetElement.remove();
+		template.remove();
+
+	}
+}
 class Header {
 	constructor () { }
 
@@ -1799,6 +2039,7 @@ function Render( options, functions ) {
 							} else {
 								Promise.all( functions.map( func => func() ) );
 							}
+
 							resolve();
 						}
 					} ).catch( reject );
@@ -1836,6 +2077,7 @@ function Render( options, functions ) {
 						else {
 							Promise.all( functions.map( func => func() ) );
 						}
+
 						resolve();
 					} else if ( reject ) {
 						reject();
