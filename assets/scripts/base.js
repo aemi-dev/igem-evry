@@ -1199,6 +1199,48 @@ class SocialIcon {
 					}
 				}
 			},
+			orcid: {
+				test: /^((https?\:)?\/\/(www\.)?orcid\.org\/)/,
+				code: {
+					t: 'svg',
+					class: ['site-icon-svg','site-icon-orcid'],
+					ns: 'http://www.w3.org/2000/svg',
+					attr: {
+						xmlns: 'http://www.w3.org/2000/svg',
+						'xmlns:xlink': 'http://www.w3.org/1999/xlink',
+						'xml:space':'preserve',
+						version: '1.1',
+						viewBox: '0 0 256 256',
+						x: '0px',
+						y: '0px'
+					},
+					style: {
+						'enable-background': 'new 0 0 256 256'
+					},
+					_: [
+						{
+							t: 'path', ns: 'http://www.w3.org/2000/svg',
+							attr: {
+								d: 'M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z',
+								fill: '#1A6CE39'
+							}
+						},
+						{
+							t: 'g', ns: 'http://www.w3.org/2000/svg', _: [
+								{
+									t: 'path', ns: 'http://www.w3.org/2000/svg', attr: { d: 'M86.3,186.2H70.9V79.1h15.4v48.4V186.2z', fill: '#FFFFFF' },
+								},
+								{
+									t: 'path', ns: 'http://www.w3.org/2000/svg', attr: { d: 'M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5 c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z', fill: '#FFFFFF' },
+								},
+								{
+									t: 'path', ns: 'http://www.w3.org/2000/svg', attr: { d: 'M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1 C84.2,46.7,88.7,51.3,88.7,56.8z', fill: '#FFFFFF' },
+								}
+							]
+						}
+					],
+				}
+			},
 			twitter: {
 				test: /^((https?\:)?\/\/(www\.)?twitter\.com\/)/,
 				code: {
@@ -1281,7 +1323,7 @@ class Team {
 	}
 
 	static processMember( element, id ) {
-		const { name, role, img } = data( element );
+		const { name, role, img , linkedin } = data( element );
 
 		const load = Team.loader.load( { url: img } );
 
@@ -1338,7 +1380,8 @@ class Team {
 					{
 						t: 'picture',
 						_: {
-							t: 'img', class: 'team-member-image',
+							t: 'img',
+							class: 'team-member-image',
 							attr: {
 								src: load,
 								alt: `Team Member Picture - ${name}`
@@ -1349,6 +1392,7 @@ class Team {
 					class: 'team-member-info',
 					_: [
 						{ t: 'span', class: ['team-member-name', 'h2'], _: name },
+						{ class: ['team-member-link' ], _: SocialIcon.getLink( linkedin ) },
 						{ t: 'span', class: 'team-member-role', _: `<b>Role</b> : ${role}` },
 						...childs
 				]}
@@ -1356,27 +1400,23 @@ class Team {
 		}};
 	}
 	static processAdvisor( element, id ) {
-		const { name, role, img } = data( element );
-		const studiesTag = element.querySelector( 'studies' );
-		const factTag = element.querySelector( 'fact' );
+		const { name, role, img, linkedin, orcid } = data( element );
+		const descTag = element.querySelector( 'description' );
 
 		const load = Team.loader.load( { url: img } );
 		
 		const childs = [];
 
-		if ( studiesTag ) {
+		const links = [];
+
+		if ( linkedin ) { links.push( SocialIcon.getLink( linkedin ) ); }
+		if ( orcid ) { links.push( SocialIcon.getLink( orcid ) ); }
+
+		if ( descTag ) {
 			childs.push( {
 				t: 'span',
-				class: 'team-advisor-studies',
-				_: `<b>Studies</b> : ${studiesTag.innerHTML}`
-			} );
-		}
-		
-		if ( factTag ) {
-			childs.push( {
-				t: 'span',
-				class: 'team-advisor-fact',
-				_: `<b>Fact</b> : ${factTag.innerHTML}`
+				class: 'team-advisor-description',
+				_: descTag.innerHTML
 			} );
 		}
 
@@ -1388,7 +1428,7 @@ class Team {
 						t: 'picture',
 						_: {
 							t: 'img',
-							class: ['team-advisor-image'],
+							class: 'team-advisor-image',
 							attr: {
 								src: load,
 								alt: `Team advisor Picture - ${name}`
@@ -1396,11 +1436,11 @@ class Team {
 						}
 					},
 					{
-						class: ['team-advisor-info'],
+						class: 'team-advisor-info',
 						_: [
 							{
 								t: 'a',
-								class: ['team-advisor-name'],
+								class: 'team-advisor-name',
 								attr: { href: `#advisor-${id}` },
 								_: `<strong>${name}</strong>`
 							},
@@ -1427,6 +1467,11 @@ class Team {
 							t: 'span',
 							class: ['team-advisor-name', 'h2'],
 							_: name
+						},
+						{
+							t: 'span',
+							class: 'team-advisor-link',
+							_: links
 						},
 						{
 							t: 'span',
@@ -1471,6 +1516,8 @@ class Team {
 			advisorRows.push( advisor.row );
 		}
 
+		console.log( advisors );
+
 		const element = ecs( {
 			id: 'team',
 			class: 'team-global',
@@ -1480,7 +1527,7 @@ class Team {
 						{ t: 'span', class:['h2','team-type'], _: 'Team Members' },
 						{ class: 'team-member-grid', _: memberGrid },
 						{ t: 'span', class:['h2','team-type'], _: 'Team Advisors' },
-						{ class: 'team-advisors-grid', _: advisorGrid },
+						{ class: 'team-advisor-grid', _: advisorGrid },
 					]
 				},
 				{
@@ -1488,7 +1535,7 @@ class Team {
 						{ t: 'span', class: ['h2', 'team-type'], _: 'Team Members' },
 						{ class: 'team-member-rows', _: memberRows },
 						{ t: 'span', class: ['h2', 'team-type'], _: 'Team Advisors' },
-						{ class: 'team-advisors-rows', _: advisorRows },
+						{ class: 'team-advisor-rows', _: advisorRows },
 					]
 				}
 			]
