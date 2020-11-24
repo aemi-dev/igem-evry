@@ -719,8 +719,9 @@ class Wait {
 		} );
 	}
 	static whileLoading() {
+		const [func, ...args] = arguments;
 		if ( document.readyState === 'loading' ) {
-			return func( ...arguments );
+			return func( ...args );
 		}
 	}
 	static interactive() {
@@ -1006,7 +1007,7 @@ class ImageLoader {
 							mode: 'cors',
 							credentials: 'include',
 							cache: 'default'
-						} ).then( async function (response) {
+						} ).then( async function ( response ) {
 							if ( response.status === 200 ) {
 								const blob = await response.blob();
 								try {
@@ -1024,12 +1025,12 @@ class ImageLoader {
 	}
 	async load( options ) {
 		options = options || Object.create( null );
-		const { url, webpURL } = options;
+		const { url, webp } = options;
 		let res;
-		if ( !!webpURL && typeof webpURL === 'string' ) {
+		if ( !!webp && typeof webp === 'string' ) {
 			const _ = await WebPTest.passed;
 			if ( _ ) {
-				res = ( await this.worker.postMessage( { url: webpURL } ) ).url;
+				res = ( await this.worker.postMessage( { url: webp } ) ).url;
 			} else {
 				res = ( await this.worker.postMessage( { url: url } ) ).url;
 			}
@@ -1038,12 +1039,12 @@ class ImageLoader {
 		}
 		return res;
 	}
-	static async load( url, webpURL ) {
+	static async load( options ) {
 		const gl = getGlobal();
 		if ( !( 'ImageLoader' in gl ) ) {
 			gl.ImageLoader = new ImageLoader();
 		}
-		return await gl.ImageLoader.load( url, webpURL );
+		return await gl.ImageLoader.load( options );
 	}
 	terminate() {
 		this.worker.terminate();
@@ -1514,8 +1515,6 @@ class Team {
 			advisorRows.push( advisor.row );
 		}
 
-		console.log( advisors );
-
 		const element = ecs( {
 			id: 'team',
 			class: 'team-global',
@@ -1763,11 +1762,11 @@ class Page {
 	static async header( text, options = Object.create( null ) ) {
 		const {
 			compare = true,
-			compareFirst = 'https://2020.igem.org/wiki/images/4/4a/T--Evry_Paris-Saclay--Banner-Alive_Rosewood-ML.jpg',
-			compareFirstWebP = 'https://2020.igem.org/wiki/images/4/4a/T--Evry_Paris-Saclay--Banner-Alive_Rosewood-ML.jpg',
+			compareFirst = 'https://localhost:5500/assets/media/T--Evry_Paris-Saclay--Banner-First.jpg',
+			compareFirstWebP = 'https://localhost:5500/assets/media/T--Evry_Paris-Saclay--Banner-First.webp.jpg',
 			compareFirstAlt = 'Page Header Background - First Layer',
-			compareSecond = 'https://2020.igem.org/wiki/images/e/ed/T--Evry_Paris-Saclay--Banner-Dead_Rosewood-ML.jpg',
-			compareSecondWebP = 'https://2020.igem.org/wiki/images/e/ed/T--Evry_Paris-Saclay--Banner-Dead_Rosewood-ML.jpg',
+			compareSecond = 'https://localhost:5500/assets/media/T--Evry_Paris-Saclay--Banner-Second.jpg',
+			compareSecondWebP = 'https://localhost:5500/assets/media/T--Evry_Paris-Saclay--Banner-Second.webp.jpg',
 			compareSecondAlt = 'Page Header Background - Second Layer'
 		} = options;
 
@@ -1810,7 +1809,8 @@ class Page {
 									t: 'img',
 									attr: {
 										src: ImageLoader.load( {
-											url: compareFirst
+											url: compareFirst,
+											webp: compareFirstWebP
 										} ),
 										alt: compareFirstAlt,
 										loading: 'lazy',
@@ -1837,7 +1837,8 @@ class Page {
 									t: 'img',
 									attr: {
 										src: ImageLoader.load( {
-											url: compareSecond
+											url: compareSecond,
+											webp: compareSecondWebP
 										} ),
 										alt: compareSecondAlt,
 										loading: 'lazy',
@@ -2132,5 +2133,125 @@ function Render( options, functions ) {
 					}
 				} );
 		} );
+	}
+}
+class VariableManager {
+	constructor () {
+		const gl = getGlobal();
+		if ( !( 'VariableManager' in gl ) ) {
+			gl.VariableManager = this;
+			this.map = {};
+		}
+		return gl.VariableManager;
+	}
+	register( key, object ) {
+		object = typeof object === 'object' ? object : {};
+		const { exec, parser } = object;
+		if ( key in this.map ) {
+			return false;
+		}
+		if ( !( exec || parser ) ) {
+			return false;
+		} 
+		this.map[key] = { exec, parser };
+	}
+	async execute() {
+		console.time('Exec');
+		const body = document.body;
+
+		const nodes = [body];
+		const found = [];
+
+		while ( nodes.length > 0 ) {
+			const e = nodes.shift();
+			for ( const node of e.childNodes ) {
+				if ( [1, 11].includes( node.nodeType ) ) {
+					nodes.unshift( node );
+				}
+				else if ( [3, 8].includes( node.nodeType ) ) {
+					if ( ( /{{(.|\n|\r)*}}/g ).test( node.textContent ) ) {
+						found.push( node.parentNode );
+					}
+				}
+			}
+		}
+
+		for ( const fo of found ) {
+			let html = fo.innerHTML;
+			entries( this.map, ( key, value ) => {
+				const reg = new RegExp( `{{${key}:?(.|\n|\r)*?}}`, 'g' );
+				const res = reg.exec( html );
+				if ( res && res.length > 0 ) {
+					const fres = res.filter( e => e );
+					const { parser, exec } = value;
+					for ( const re of fres ) {
+						fo.innerHTML = '';
+						html = html.split( re );
+						for ( let i = 0; i < html.length; i++ ) {
+							const d = document.createTextNode( html[i] );
+							fo.appendChild( d );
+							if ( i < html.length - 1 ) {
+								const e = exec( VariableManager.parse( key, parser, re ) );
+								if ( !fo.appendChild( e ) ) {
+									fo.insertAdjacentElement( 'afterend', e );
+								}
+							}
+						}
+					}
+				}
+			} );
+		}
+	}
+	/**
+	 * @param {Object} parser 
+	 * @param {String} result 
+	 */
+	static parse( key, parser, result ) {
+		if ( result.length < 4 + key.length + 1 + 3 ) {
+			return {};
+		}
+		const trimmed = result.slice( 2 + key.length + 1, result.length - 2 );
+		const cut = trimmed.split( /;/g );
+		const obj = cut.reduce( ( prev, curr ) => {
+			const [key,value] = curr.split( /=/ );
+			if ( key in parser ) {
+				if ( parser[key] === 'number' ) {
+					try {
+						prev[key] = Number( value );
+					}
+					catch ( _ ) {
+						console.error( _ );
+					}
+				}
+				else if ( parser[key] === 'symbol' ) {
+					try {
+						prev[key] = Symbol( value );
+					}
+					catch ( _ ) {
+						console.error( _ );
+					}
+				}
+				else if ( parser[key] === 'string' ) {
+					prev[key] = value.toString();
+				}
+				else if ( parser[key] === 'boolean' ) {
+					try {
+						prev[key] = Boolean( value );
+					}
+					catch ( _ ) {
+						console.error( _ );
+					}
+				}
+			}
+			return prev;
+		}, ( {} ) );
+		return obj;
+	}
+	static execute() {
+		const gl = getGlobal();
+		if ( !( 'VariableManager' in gl ) ) {
+			throw new Error( 'VariableManager was not instanciated.' );
+		}
+		return gl.VariableManager.execute();
 	}
 }

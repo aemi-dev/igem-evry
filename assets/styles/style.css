@@ -570,6 +570,10 @@ a.js-header-scroller:hover {
 	background-color: var(--page-color);
 	margin: 0;
 	padding: 0;
+	-webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 .page-row {
 	margin: 0 auto;
@@ -599,12 +603,80 @@ p:last-child {
 .page-content img,
 .page-row img,
 .page-content p img,
-p img {
+p img,
+.page-content video,
+.page-row video,
+video,
+.page-content iframe,
+.page-row iframe,
+iframe {
 	display: block;
-	margin-top: 1rem;
+	margin-top: 2rem;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 1rem;
+	margin-bottom: 2rem;
+	max-width: calc(100vw - 2 * var(--margin)) !important;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+}
+.table-wrapper {
+	max-width: 100%;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	margin-left: auto;
+	margin-right: auto;
+	overflow-x: scroll;
+}
+.form-calculator {
+	background-color: var(--element-background);
+	border-radius: calc(var(--radius) * 2);
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding: .5rem;
+}
+
+.form-calculator label {
+	display: block;
+	font-weight: 500;
+	margin-bottom: .5rem;
+}
+
+.form-input {
+	padding-bottom: 1rem;
+}
+
+.element-group {
+	background-color: var(--page-color);
+	border-radius: var(--radius);
+	margin: .5rem;
+	padding: 1rem;
+}
+
+.input-wrapper {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	flex-flow: row nowrap;
+	min-height: 3rem;
+}
+.input-wrapper > :not(:last-child) {
+	margin-right: .25rem;
+}
+
+.input-wrapper input {
+	width: auto;
+}
+
+.output-volume {
+	font-size: 3rem;
+	font-weight: 700;
+	letter-spacing: -.05rem;
+	line-height: 1;
 }
 /**
  *
@@ -665,7 +737,7 @@ p img {
 .site-sponsors {
 	display: grid;
 	grid-template-columns: repeat(5,1fr);
-	gap: 2rem;
+	gap: 1rem;
 	align-items: center;
 	justify-content: center;
 	margin-top: var(--margin);
@@ -675,14 +747,16 @@ p img {
 .site-sponsor img:not(:hover) {
 	opacity: 1;
 	filter: saturate(0);
-	transition-property: filter;
+	transform: scale(1);
+	transition-property: filter, transform;
 	transition-duration: 200ms;
 	transition-timing-function: ease;
 }
 
 .site-sponsor img:hover {
 	opacity: 1;
-	transition-property: filter;
+	transform: scale(1.1);
+	transition-property: filter, transform;
 	transition-duration: 200ms;
 	transition-timing-function: ease;
 }

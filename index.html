@@ -4,25 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Mise en place d'un chronomètre du temps de parsing du HTML -->
+    <script>console.time( 'HTML Parsing Duration' );</script>
+
+    
+    <!-- Import des styles non minifiés et non optimisés -->
     <link rel="stylesheet" href="./assets/styles/fonts.css">
     <link rel="stylesheet" href="./assets/styles/standard.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <!-- <link rel="stylesheet" href="./dist/styles/concat.min.css"> -->
-    <script>console.time( 'Page Display' );</script>
+    <!-- Exécuter la commande `make css` ou `make all` pour obtenir ce CSS
+        <-- Import du style minifié et optimisé ->
+        <link rel="stylesheet" href="./dist/styles/concat.min.css">
+    -->
+
+    <!-- Import des styles non minifiés et non optimisés -->
     <script type="text/javascript" src="./assets/scripts/base.js"></script>
     <script type="text/javascript" src="./assets/scripts/custom.js"></script>
-    <!-- <script type="text/javascript" src="./dist/scripts/concat.min.js"></script> -->
+    <!-- Exécuter la commande `make js` ou `make all` pour obtenir ce JS
+        <-- Import du JavaScript minifié et optimisé ->
+        <script type="text/javascript" src="./dist/scripts/concat.min.js"></script>
+    -->
+
     <title>Rosewood</title>
 </head>
 
 <body class="color-scheme-light">
+
+    <!-- BEGIN: Header (bandeau du site) -->
     <template id="header-constructor">
+
+        <!-- Logo de l'équipe -->
         <img id="tmp-site-logo"
             data-src="https://2020.igem.org/wiki/images/9/94/T--Evry_Paris-Saclay--Logo-iGEM-Evry-2020-squared-96.png"
             data-alt="iGEM Evry Logo">
+
+        <!-- Logo du projet -->
         <img id="tmp-site-title"
             data-src="https://2020.igem.org/wiki/images/b/bf/T--Evry_Paris-Saclay--Logo-Rosewood_txt_light.png"
             data-alt="Rosewood Logo">
+
+        <!-- BEGIN: Menu du site -->
         <menu>
             <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Project" data-text="Project">
                 <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Description" data-text="Description"></item>
@@ -54,13 +76,25 @@
                 <item data-href="https://2020.igem.org/Team:Evry_Paris-Saclay/Education" data-text="Education and Public Engagement"></item>
             </item>
         </menu>
+        <!-- END: Menu du site -->
+
     </template>
+    <!-- END: Header (bandeau du site) -->
+
+    <!-- BEGIN: Contenu principal de la page -->
     <template id="page-constructor">
-        <header data-compare=1>
+
+        <!-- Utiliser du Markdown pour l'en-tête et le contenu -->
+
+        <!-- BEGIN: En-tête de la page -->
+        <header data-compare="1">
 
 # Design
 
         </header>
+        <!-- END: En-tête de la page -->
+
+        <!-- BEGIN: Contenu de la page -->
         <content>
 
 Design is the first step in the design-build-test cycle in engineering and synthetic biology. Use this page to describe the process that you used in the design of your project. You should clearly explain the engineering principles used to design your project.
@@ -73,6 +107,11 @@ Design is the first step in the design-build-test cycle in engineering and synth
 - Discussion of the design iterations your team went through
 - Experimental plan to test your designs
 
+## Calculateur intégré
+
+Utiliser cette notation pour intégrer une variable dans la page :
+
+{{tab}}
 
 ## Inspiration
 
@@ -84,79 +123,64 @@ Design is the first step in the design-build-test cycle in engineering and synth
 # Team
 
         </content>
+        <!-- END: Contenu de la page -->
+
     </template>
+    <!-- END: Contenu principal de la page -->
+
+    <!-- BEGIN: Membres de l'équipe -- peut être utilisé sur plusieurs pages -->
     <template id="team-constructor" data-target="team">
+
         <team data-type="members">
-            <member data-name="Maëva CHERRIERE" data-role="Team Leader, Head of Human Practices" data-img="http://127.0.0.1:5500/assets/media/T--Evry_Paris-Saclay--Maeva.jpg">
-                <studies>Master 1 Student in Pharmaceutical Science at University Paris-Saclay</studies>
+            <!-- Exemple de membre classique -->
+            <member data-name="Firstname LASTNAME" data-role="Team Leader, Head of Human Practices" data-img="https://localhost:5500/assets/media/T--Evry_Paris-Saclay-Member-PLACEHOLDER.png">
+                <studies>Master 1 Student at University Paris-Saclay</studies>
                 <fact>Coming to take care of communication and becoming a team leader, that's iGEM</fact>
             </member>
-            <member data-name="Daniel RODRIGUEZ" data-role="Team leader and dry lab" data-img="https://2020.igem.org/wiki/images/9/9d/T--Evry_Paris-Saclay--Maeva.jpg">
-                <studies>Master 2 Student in Systems and Synthetic Biology at University Paris-Saclay</studies>
-                <fact>Wants to use cells as USB-drivers.</fact>
-            </member>
-            <member data-name="Maxime PISPISA" data-role="Wet Lab" data-img="https://2020.igem.org/wiki/images/a/a8/T--Evry_Paris-Saclay--Maxime.jpeg">
-                <studies>Master 1 Student in Life Sciences and Health at University Paris-Est Creteil</studies>
-                <fact>A survivor of yoga exercises despite some lack of flexibility. He is as good a lab worker as he is a cook.</fact>
-            </member>
-            <member data-name="Angelyne SAINT-JULIEN" data-role="Secretary and Head of Wet Lab" data-img="https://2020.igem.org/wiki/images/3/32/T--Evry_Paris-Saclay--Angelyne.jpg">
-                <studies>Master 1 Student in Molecular and Cellular Biology at Sorbonne University</studies>
-                <fact>Simple or double, no transformation can withstand her!</fact>
-            </member>
-            <member data-name="Mélissa NGUEVO" data-role="Wet Lab" data-img="https://2020.igem.org/wiki/images/2/29/T--Evry_Paris-Saclay--M%C3%A9lissa.jpg">
-                <studies>Master 1 Student in Life Sciences and Health, Sino-French track Cell, Tissue and Gene Biotherapies at University Paris-Saclay</studies>
-                <fact>She is a hard worker : The day she is a researcher and the night yoga teacher ! As pills she's always dynamic</fact>
-            </member>
-            <member data-name="William HAMLET" data-role="Wet Lab" data-img="https://2020.igem.org/wiki/images/0/0b/T--Evry_Paris-Saclay--William.jpg">
-                <studies>3rd year Bachelor Student in Life Sciences, track Bioinformatics at University of Evry-val-d’Essonne</studies>
-                <fact>Discreet but efficient. Flexible lab worker who also is a freezer defroster in his spare time.</fact>
-            </member>
-            <member data-name="Catia GONCALVES" data-role="Wet Lab" data-img="https://2020.igem.org/wiki/images/4/48/T--Evry_Paris-Saclay--Catia.jpg">
-                <studies>Master 1 Student in Pharmaceutical Science at University Paris-Saclay</studies>
-                <fact>Despite being stressed, she will never give up.</fact>
-            </member>
-            <member data-name="Eva GOMES" data-role="Wet Lab" data-img="https://2020.igem.org/wiki/images/3/37/T--Evry_Paris-Saclay--Eva.jpg">
-                <studies>Master 1 Student in Life Sciences and Health, track Microbiology at University Paris-Saclay</studies>
-                <fact>Determined, motivated, she gives the best of her to succeed, despite a touch of stress at times.</fact>
-            </member>
-            <member data-name="Micky-Love MOCOMBE" data-linkedin="https://linkedin.com/" data-role="Human practices" data-img="https://2020.igem.org/wiki/images/3/3a/T--Evry_Paris-Saclay--Micky.jpg">
-                <studies>Master 2 Student in Sociology at University Paris-Saclay</studies>
-                <fact>Smart worker, nothing can resist him. Oops! He is above all an avid reader. Call him Bookman!</fact>
-            </member>
-            <member data-name="Alexandre TARDIVEL" data-role="Human practices" data-img="https://2020.igem.org/wiki/images/5/5c/T--Evry_Paris-Saclay--Alexandre.jpeg">
-                <studies>Master 1 Student in Molecular and Cellular Biology at Sorbonne University</studies>
-            </member>
-            <member data-name="Jellyssa BENJAMIN" data-role="Human practices" data-img="https://2020.igem.org/wiki/images/d/d7/T--Evry_Paris-Saclay--Jellyssa.jpeg">
-                <studies>Master 2 Student in Health and Biotechnology Law at University Paris-Saclay</studies>
-                <fact>Knowledge is built with the participation of everyone. Interdisciplinarity is the best  quality of a team.</fact>
-            </member>
-            <advisor data-name="Jellyssa BENJAMIN" data-role="Human practices" data-img="https://2020.igem.org/wiki/images/d/d7/T--Evry_Paris-Saclay--Jellyssa.jpeg" data-linkedin="https://linkedin.com/" data-orcid="http://orcid.org/0000-0003-2547-8935">
-                <description>Master 2 Student in Health and Biotechnology Law at University Paris-Saclay</description>
+
+            <!-- Exemple d'advisor -->
+            <advisor data-name="Firstname LASTNAME" data-role="Super Advisor" data-img="https://localhost:5500/assets/media/T--Evry_Paris-Saclay-Member-PLACEHOLDER.png" data-linkedin="https://linkedin.com/" data-orcid="http://orcid.org/">
+                <description>Head of Something, doing things that make thinks pretty cool for iGEM</description>
             </advisor>
         </team>
+
     </template>
+    <!-- END: Membres de l'équipe -- peut être utilisé sur plusieurs pages -->
+
+    <!-- BEGIN: Footer d'une page -->
     <template id="footer-constructor">
+
+        <!-- BEGIN: Sponsors en bas de page -->
         <sponsors>
-            <sponsor data-title="Génopole" data-href="https://www.genopole.fr/" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Genopole-opti.png" ></sponsor>
-            <sponsor data-title="Université d'Evry-val-d’Essonne - Université Paris-Saclay" data-href="https://www.univ-evry.fr/" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--ueve-upsaclay-opti.svg" ></sponsor>
-            <sponsor data-title="Université Paris-Saclay" data-href="https://www.universite-paris-saclay.fr" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--upsaclay-opti.svg" ></sponsor>
-            <sponsor data-title="Investissements d'Avenir" data-href="https://www.enseignementsup-recherche.gouv.fr/pid24578/investissements-d-avenir.html" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Investissements_davenir-removebg-preview-opti.png" ></sponsor>
-            <sponsor data-title="ISSB" data-href="https://hal.inria.fr/ISSB" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--iSSB_petit-removebg-preview-opti.png" ></sponsor>
-            <sponsor data-title="Twist Bioscience" data-href="https://www.twistbioscience.com" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Twist-Bioscience-opti.svg" ></sponsor>
-            <sponsor data-title="Grand Paris-Sud" data-href="https://www.grandparissud.fr" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Logo-papeterie-Rouge-opti.png" ></sponsor>
-            <sponsor data-title="SnapGene" data-href="https://www.snapgene.com" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--SnapGene-opti.svg" ></sponsor>
-            <sponsor data-title="Integrated DNA Technologies" data-href="https://eu.idtdna.com/" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--IDT-removebg-preview-opti.png" ></sponsor>
-            <sponsor data-title="New Englands BioLabs" data-href="https://www.neb-online.fr" data-src="http://127.0.0.1:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Logo_NEB-opti.png" ></sponsor>
+            <sponsor data-title="Génopole" data-href="https://www.genopole.fr/" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Genopole-opti.png" ></sponsor>
+            <sponsor data-title="Université d'Evry-val-d’Essonne - Université Paris-Saclay" data-href="https://www.univ-evry.fr/" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--ueve-upsaclay-opti.svg" ></sponsor>
+            <sponsor data-title="Université Paris-Saclay" data-href="https://www.universite-paris-saclay.fr" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--upsaclay-opti.svg" ></sponsor>
+            <sponsor data-title="Investissements d'Avenir" data-href="https://www.enseignementsup-recherche.gouv.fr/pid24578/investissements-d-avenir.html" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Investissements_davenir-removebg-preview-opti.png" ></sponsor>
+            <sponsor data-title="ISSB" data-href="https://hal.inria.fr/ISSB" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--iSSB_petit-removebg-preview-opti.png" ></sponsor>
+            <sponsor data-title="Twist Bioscience" data-href="https://www.twistbioscience.com" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Twist-Bioscience-opti.svg" ></sponsor>
+            <sponsor data-title="Grand Paris-Sud" data-href="https://www.grandparissud.fr" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Logo-papeterie-Rouge-opti.png" ></sponsor>
+            <sponsor data-title="SnapGene" data-href="https://www.snapgene.com" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--SnapGene-opti.svg" ></sponsor>
+            <sponsor data-title="Integrated DNA Technologies" data-href="https://eu.idtdna.com/" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--IDT-removebg-preview-opti.png" ></sponsor>
+            <sponsor data-title="New Englands BioLabs" data-href="https://www.neb-online.fr" data-src="https://localhost:5500/assets/media/sponsors/T--Evry_Paris-Saclay--Logo_NEB-opti.png" ></sponsor>
         </sponsors>
+        <!-- END: Sponsors en bas de page -->
+        
+        <!-- BEGIN: Réseaux Sociaux en bas de page -->
         <networks>
             <network data-title="Facebook" data-href="https://facebook.com/g.cqd"></network>
             <network data-title="Instagram" data-href="https://instagram.com/g.cqd"></network>
             <network data-title="Twitter" data-href="https://twitter.com/g.cqd"></network>
             <network data-title="LinkedIn" data-href="https://linkedin.com/g.cqd"></network>
         </networks>
+        <!-- END: Réseaux Sociaux en bas de page -->
+
+        <!-- Copyrights -->
         <colophon data-text="&copy; 2020 &bull; iGEM Evry Paris-Saclay" />
+
     </template>
-    <script>console.timeEnd( 'Page Display' );</script>
+    <!-- END: Footer d'une page -->
+
+    <script>console.timeEnd( 'HTML Parsing Duration' );</script>
 </body>
 
 </html>

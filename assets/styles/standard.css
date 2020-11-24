@@ -10,8 +10,8 @@
 		'Courier New', monospace;
 	--mono-stack: 'JetBrains Mono', 'Fira Code', 'Hack',
 		var(--mono-system-stack);
-	--font-stack: var(--apple-stack), 'Inter', var(--system-stack);
-	--font-stack-hdg: var(--apple-stack), 'Inter Display', var(--system-stack);
+	--font-stack: 'Inter', var(--apple-stack), var(--system-stack);
+	--font-stack-hdg: 'Inter Display', var(--apple-stack), var(--system-stack);
 	--font-size: 16px;
 	--radius: 0.2rem;
 
@@ -156,8 +156,8 @@
 
 @supports (font-variation-settings: normal) {
 	:root {
-		--font-stack: var(--apple-stack), 'Inter Var', 'Inter', var(--system-stack);
-		--font-stack-hdg: var(--apple-stack), 'Inter Display Var', 'Inter Display', 'Inter Var', 'Inter', var(--system-stack);
+		--font-stack: 'Inter Var', 'Inter', var(--apple-stack), var(--system-stack);
+		--font-stack-hdg: 'Inter Display Var', 'Inter Display', 'Inter Var', 'Inter', var(--apple-stack), var(--system-stack);
 		--mono-stack: 'JetBrains Mono', 'Fira Code Var', 'Fira Code', 'Hack', var(--mono-system-stack);font-family: var(--font-stack);
 	}
 	.inter {
