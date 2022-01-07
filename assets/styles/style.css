@@ -109,11 +109,13 @@ body.loaded #site-footer {
 }
 
 #site-logo,
+#site-medal,
 #site-title {
 	height: 1.775rem;
 }
 
-#site-logo {
+#site-logo,
+#site-medal {
 	margin-right: 0.5rem;
 	width: 1.775rem;
 }

@@ -1565,7 +1565,9 @@ class Header {
 	}
 
 	static async heading( options ) {
-		const { igem, medal, rosewood } = options;
+		const { igem, rosewood } = options;
+		console.log( data( medal, 'src' ) );
+
 		return {
 			class: 'site-heading',
 			_: [
@@ -1599,36 +1601,7 @@ class Header {
 						]
 					}
 				},
-				{
-					t: 'a',
-					attr: {
-						href: 'https://igem-evry.org',
-						target: '_blank',
-						rel: 'noreferrer noopener'
-					},
-					_: {
-						t: 'img',
-						id: 'site-medal',
-						attr: {
-							loading: 'lazy',
-							decoding: 'async',
-							src: Header.load( {
-								url: data( medal, 'src' ),
-								webpURL: data( medal, 'webp' )
-							} ),
-							alt: data( medal, 'alt' )
-						},
-						style: { visibility: 'hidden' },
-						events: [
-							[
-								'load',
-								function (event) {
-									event.target.style.visibility = 'visible';
-								}
-							]
-						]
-					}
-				},
+				`<a href="#" target="_blank" rel="noreferrer noopener"><img id="#site-medal" loading="lazy" decoding="async" src="https://2019.igem.org/wiki/images/a/a1/T--Evry_Paris-Saclay--medal--or.png" alt="iGEM Gold Medal"></a>`,
 				{
 					t: 'a',
 					attr: {
@@ -1703,10 +1676,7 @@ class Header {
 						_: [
 							{
 								t: 'a',
-								attr: {
-									href: data( child, 'href' ),
-									...( data( child, 'target' ) ? { target: data( child, 'target' ) } : {} )
-								},
+								attr: { href: data( child, 'href' ) },
 								_: [data( child, 'text' )]
 							},
 							child.children.length > 0
@@ -1720,8 +1690,7 @@ class Header {
 											{
 												t: 'a',
 												attr: {
-													href: data( c, 'href' ),
-													...( data( c, 'target' ) ? { target: data( c, 'target' ) } : {} )
+													href: data( c, 'href' )
 												},
 												_: data( c, 'text' )
 											}
